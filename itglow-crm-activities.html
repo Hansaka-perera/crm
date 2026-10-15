@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Activities | ITGlow CRM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--blue:#0d59fc;--ink:#202126;--muted:#71809d;--line:#e1e7f1;--bg:#f5f7fc;--pale:#edf2ff;--green:#19845b;--green-bg:#eaf7f0;--red:#cf4141;--red-bg:#fff0f0}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:13px Lato,Arial,sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer}.app{min-height:100vh;display:flex}.sidebar{width:180px;flex:0 0 180px;background:#fff;border:1px solid var(--line);padding:17px 16px;display:flex;flex-direction:column;gap:25px}.brand{font-size:23px;line-height:30px;letter-spacing:-.6px;color:var(--blue);font-weight:800;text-decoration:none}.workspace-name{font-weight:700;margin-bottom:6px}.company{font-size:11px;color:var(--muted)}.nav{display:flex;flex-direction:column;gap:5px}.nav a{height:38px;border-radius:8px;padding:0 10px;display:flex;align-items:center;gap:11px;text-decoration:none;color:var(--muted);font-weight:700}.nav a.active{background:var(--pale);color:var(--blue)}.nav a:hover{background:#f6f8fc}.nav svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}.workspace-card{border:1px solid var(--line);border-radius:11px;padding:20px;display:flex;flex-direction:column;align-items:flex-start;gap:15px}.workspace-card h2{font-size:17px;line-height:1.35;margin:0}.workspace-card p{font-size:11px;line-height:17px;color:var(--muted);margin:0}.pill{display:inline-block;border-radius:20px;padding:4px 9px;background:var(--pale);color:var(--blue);font-size:10px;font-weight:700}.pill.red{background:var(--red-bg);color:var(--red)}.support{font-size:11px;color:var(--muted);text-decoration:none;margin-top:0}
+.main{flex:1;min-width:0}.topbar{height:64px;border:1px solid var(--line);background:#fff;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:0 27px}.crumb{color:var(--muted);white-space:nowrap}.global-search{width:250px;height:35px;border-radius:8px;background:var(--bg);display:flex;align-items:center;gap:9px;padding:0 11px;color:var(--muted)}.global-search svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:1.8}.global-search input{border:0;background:transparent;outline:0;width:100%;min-width:0;font-size:12px}.top-actions{display:flex;align-items:center;gap:24px}.icon-btn{background:transparent;border:0;color:var(--muted);padding:3px}.icon-btn svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.8}.avatar{width:28px;height:28px;border-radius:50%;border:0;background:var(--pale);color:var(--blue);font-size:10px;font-weight:800}
+.content{max-width:1540px;padding:27px 27px 25px;margin:0 auto}.heading{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:20px}.heading h1{font-size:27px;letter-spacing:-.5px;line-height:34px;margin:0 0 5px;color:#050505}.heading p{margin:0;color:var(--muted);font-size:12px}.primary,.secondary,.toolbar-btn{height:38px;padding:0 18px;border:0;border-radius:8px;font-weight:700;white-space:nowrap}.primary{background:var(--blue);color:white}.primary:hover{background:#084bd8}.secondary,.toolbar-btn{background:var(--pale);color:var(--blue)}.secondary:hover,.toolbar-btn:hover{background:#e2eaff}.toolbar{display:flex;align-items:center;gap:11px;flex-wrap:wrap;margin-bottom:20px}.toolbar-btn{height:37px;min-width:95px;font-size:12px}.toolbar-btn.active-filter{outline:1px solid #b8cbff}.columns{display:grid;grid-template-columns:minmax(0,1fr) 326px;gap:20px;align-items:start}.activity-feed{display:flex;flex-direction:column;gap:13px;min-width:0}.card{background:#fff;border:1px solid var(--line);border-radius:11px;padding:19px;min-width:0}.activity-card h2,.schedule-card h2{font-size:17px;line-height:22px;margin:0 0 14px}.activity-card.overdue h2{margin-bottom:13px}.activity-top{display:flex;align-items:center;justify-content:space-between;gap:10px}.activity-line{display:flex;align-items:flex-start;gap:9px;margin:14px 0 17px;font-size:12px;line-height:18px}.activity-line input{margin:0;width:15px;height:15px;accent-color:var(--blue);flex:none}.activity-line label{cursor:pointer}.meta{font-size:12px;color:var(--muted);margin:0 0 17px;line-height:17px}.timing{font-size:10px;color:var(--muted);margin:0 0 16px;line-height:16px}.actions{display:flex;gap:10px;flex-wrap:wrap}.actions button{height:36px;font-size:11px;padding:0 17px}.notice{display:flex;align-items:center;gap:9px;background:var(--pale);border-radius:7px;padding:12px;margin-top:0;font-size:11px;line-height:16px}.notice svg{width:16px;height:16px;stroke:var(--blue);fill:none;stroke-width:2;flex:none}.schedule-card{padding:19px}.schedule-card h2{margin-bottom:15px}.schedule-card .subtext{font-size:11px;color:var(--muted);line-height:16px;margin:0 0 15px}.field{display:flex;flex-direction:column;gap:8px;padding:12px 0 13px;border-bottom:1px solid var(--line)}.field label{color:#8887b4;font-size:11px}.field input,.field select,.field textarea{border:0;outline:0;background:#fff;color:var(--ink);font-size:12px;font-weight:700;padding:0;width:100%;min-width:0;resize:vertical}.field textarea{line-height:18px;min-height:25px}.field input:focus,.field select:focus,.field textarea:focus{outline:1px solid #b5c8ff;outline-offset:3px}.field select{cursor:pointer}.reminder{display:flex;align-items:center;gap:9px;font-size:11px;margin:14px 0 15px;line-height:16px}.reminder input{accent-color:var(--blue);width:15px;height:15px;margin:0}.schedule-actions{display:flex;gap:10px;flex-wrap:wrap}.schedule-actions button{height:37px;font-size:11px;padding:0 18px}.fineprint{font-size:10px;color:var(--muted);line-height:15px;margin:16px 0 0}.footer{color:var(--muted);font-size:10px;margin-top:22px}.toast{position:fixed;right:20px;bottom:20px;background:#202126;color:white;border-radius:9px;padding:13px 16px;box-shadow:0 8px 28px #0002;max-width:calc(100vw - 40px);display:none;z-index:20}.toast.show{display:block}.empty{padding:24px;color:var(--muted);font-size:12px}.modal-bg{position:fixed;inset:0;background:#18243d66;display:none;align-items:center;justify-content:center;padding:18px;z-index:10}.modal-bg.show{display:flex}.modal{background:white;border-radius:12px;padding:23px;width:min(460px,100%);max-height:90vh;overflow:auto}.modal h2{margin:0 0 15px;font-size:19px}.modal-actions{display:flex;justify-content:flex-end;gap:9px;margin-top:18px}.modal .field{padding:10px 0}
+@media(max-width:1050px){.sidebar{width:164px;flex-basis:164px;padding:15px 11px}.content{padding:22px 18px}.columns{grid-template-columns:minmax(0,1fr) 300px;gap:14px}.card,.schedule-card{padding:15px}.topbar{padding:0 18px}}
+@media(max-width:790px){.sidebar{width:60px;flex-basis:60px;padding:15px 7px;align-items:center;gap:23px}.brand{font-size:17px;letter-spacing:-1px}.workspace-meta,.nav-label,.workspace-card,.support{display:none}.nav{width:100%}.nav a{justify-content:center;padding:0}.topbar{height:auto;min-height:62px;padding:12px;flex-wrap:wrap;gap:10px}.crumb{font-size:11px}.global-search{order:3;width:100%}.top-actions{margin-left:auto}.content{padding:19px 14px}.columns{grid-template-columns:1fr}.schedule-card{grid-row:1}.activity-feed{grid-row:2}.heading h1{font-size:24px;line-height:30px}.heading .primary{padding:0 12px;font-size:11px}.toolbar{gap:7px}.toolbar-btn{flex:1;padding:0 10px}.schedule-actions button{flex:1}}
+@media(max-width:460px){.heading{align-items:flex-start}.heading h1{font-size:22px}.heading p{max-width:250px;line-height:17px}.toolbar-btn{font-size:10px;min-width:0}.card,.schedule-card{padding:14px}.actions button{flex:1;padding:0 10px}.activity-card h2,.schedule-card h2{font-size:16px}}
+
+/* Shared interaction polish */
+:where(a,button,input,select,textarea,[tabindex]):focus-visible{outline:3px solid #9bb8ff;outline-offset:2px}
+:where(button,[role="button"]):disabled{opacity:.55;cursor:not-allowed}
+:where(input,select,textarea):disabled{opacity:.65;cursor:not-allowed}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+</style>
+  <link rel="stylesheet" href="assets/css/design-system.css">
+</head>
+<body>
+<div class="app">
+<aside class="itg-sidebar" data-itglow-sidebar aria-label="Application sidebar"></aside>
+<main class="main">
+<header class="itg-topbar" data-itglow-topbar aria-label="Workspace toolbar"></header>
+<script src="assets/js/app.js"></script>
+<div class="content">
+<section class="heading"><div><h1>Activities</h1><p>Keep follow-ups, calls and meetings organized.</p></div><button class="primary" id="scheduleTop">+ Schedule activity</button></section>
+<div class="toolbar"><button class="toolbar-btn" data-filter="upcoming" id="upcomingBtn">Upcoming · <span id="upcomingCount">3</span></button><button class="toolbar-btn" data-filter="completed" id="completedBtn">Completed · <span id="completedCount">8</span></button><button class="toolbar-btn" id="ownerFilter">All owners</button><button class="toolbar-btn" id="typeFilter">Calls, tasks &amp; meetings</button></div>
+<div class="columns">
+<section class="activity-feed" id="activityFeed" aria-live="polite"></section>
+<aside class="card schedule-card" id="scheduleCard">
+<h2>Schedule activity</h2><p class="subtext">Create a follow-up · Required fields marked *</p>
+<form id="activityForm">
+<div class="field"><label for="activityType">Activity type *</label><select id="activityType" required><option>Call</option><option>Task</option><option>Meeting</option><option>Email</option></select></div>
+<div class="field"><label for="activityTitle">Title *</label><input id="activityTitle" required value="Atlas discovery call" placeholder="Activity title"></div>
+<div class="field"><label for="activityContact">Related contact</label><select id="activityContact"><option value="Jamie Park">Jamie Park · Fictional sample</option><option value="Robin Lee">Robin Lee · Northstar support</option><option value="Sam Rivera">Sam Rivera · Cedar renewal</option><option value="Drew Taylor">Drew Taylor · Luma Design</option><option value="">No contact</option></select></div>
+<div class="field"><label for="activityDeal">Related deal</label><select id="activityDeal"><option value="Atlas rollout · $12,000">Atlas rollout · $12,000</option><option value="Northstar support · $8,000">Northstar support · $8,000</option><option value="Cedar renewal · $6,000">Cedar renewal · $6,000</option><option value="Luma redesign · $4,000">Luma redesign · $4,000</option><option value="">No deal</option></select></div>
+<div class="field"><label for="activityDate">Date *</label><input type="date" id="activityDate" required value="2026-10-13"></div>
+<div class="field"><label for="activityTime">Time *</label><select id="activityTime" required><option value="10:00">10:00–10:30 · UTC</option><option value="11:30">11:30–12:00 · UTC</option><option value="14:00">14:00–14:30 · UTC</option><option value="16:00">16:00–16:30 · UTC</option><option value="09:00">09:00–09:30 · UTC</option><option value="15:00">15:00–15:30 · UTC</option></select></div>
+<div class="field"><label for="activityOwner">Assigned to</label><select id="activityOwner"><option>Craft UI</option><option>Maya Chen</option><option>Tec</option><option>ITII</option><option>CCYH</option></select></div>
+<div class="field"><label for="activityNotes">Notes</label><textarea id="activityNotes" rows="2">Discuss rollout scope and team needs.</textarea></div>
+<label class="reminder"><input type="checkbox" id="activityReminder" checked> Send me a reminder 15 minutes before</label>
+<div class="schedule-actions"><button type="submit" class="primary">Save activity</button><button type="button" class="secondary" id="cancelActivity">Cancel</button></div>
+<p class="fineprint">Saving an activity does not email the contact.</p>
+</form>
+</aside>
+</div>
+<footer class="footer">ITGlow Technology · WhiteOnWhite workspace · Static review</footer>
+</div>
+</main>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+(async () => {
+let activities = await window.ITGlowAPI.list("activities");
+let filter='upcoming',ownerFilter='All owners',typeFilter='All types',nextId=Math.max(0,...activities.map(a=>Number(a.id)||0))+1;
+const $=id=>document.getElementById(id);
+function notify(s){window.ITGlowUI.toast(s)}
+function esc(s){return window.ITGlowUI.escapeHtml(String(s??''))}
+function dateLabel(d){const date=new Date(d+'T12:00:00Z');return date.toLocaleDateString('en-GB',{day:'numeric',month:'long',timeZone:'UTC'})}
+function localToday(){const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`}
+function dateHeading(d,items=[]){const today=localToday();if(d<today&&items.some(a=>!a.done))return 'Overdue · '+items.filter(a=>!a.done).length;if(d===today)return 'Today · '+new Intl.DateTimeFormat('en-GB',{day:'numeric',month:'long'}).format(new Date(d+'T12:00:00Z'));const tomorrow=new Date();tomorrow.setDate(tomorrow.getDate()+1);const tomorrowKey=`${tomorrow.getFullYear()}-${String(tomorrow.getMonth()+1).padStart(2,'0')}-${String(tomorrow.getDate()).padStart(2,'0')}`;if(d===tomorrowKey)return 'Tomorrow · '+new Intl.DateTimeFormat('en-GB',{day:'numeric',month:'long'}).format(new Date(d+'T12:00:00Z'));return new Intl.DateTimeFormat('en-GB',{weekday:'long',day:'numeric',month:'long',timeZone:'UTC'}).format(new Date(d+'T12:00:00Z'))}
+function timeLabel(a){return `${a.time} · ${a.owner} · ${a.duration} min`}
+function render(){
+ void window.ITGlowAPI.syncCollection('activities',activities).catch(error=>notify(error.message));
+ const list=activities.filter(a=>a.done===(filter==='completed')&&(ownerFilter==='All owners'||a.owner===ownerFilter)&&(typeFilter==='All types'||a.type===typeFilter)&&(`${a.title} ${a.contact} ${a.deal} ${a.owner} ${a.type}`.toLowerCase().includes($('globalSearch').value.toLowerCase())));
+ $('upcomingCount').textContent=activities.filter(a=>!a.done).length;$('completedCount').textContent=activities.filter(a=>a.done).length;
+ $('upcomingBtn').classList.toggle('active-filter',filter==='upcoming');$('completedBtn').classList.toggle('active-filter',filter==='completed');
+ const grouped={};list.forEach(a=>{(grouped[a.date]??=[]).push(a)});
+ let html='';
+ if(!list.length)html='<div class="card empty">No activities match these filters.</div>';
+ Object.entries(grouped).sort(([a],[b])=>a.localeCompare(b)).forEach(([date,items])=>{
+ const overdue=items.some(a=>!a.done&&a.date<localToday());
+ html+=`<section class="card activity-card ${overdue?'overdue':''}"><div class="activity-top"><h2>${esc(dateHeading(date,items))}</h2>${overdue?'<span class="pill red">Needs attention</span>':''}</div>`;
+ items.forEach(a=>{html+=`<div class="activity-line"><input type="checkbox" id="done-${a.id}" data-done="${a.id}" ${a.done?'checked':''} aria-label="Mark ${esc(a.title)} ${a.done?'not complete':'complete'}"><label for="done-${a.id}">${esc(a.title)}</label></div><p class="meta">${esc(a.type)} · ${esc(a.contact||'No contact')} · ${esc(a.deal||'No deal')}</p><p class="timing">${a.done?'Completed':dateLabel(a.date)+', '+a.time} · ${esc(a.owner)} · ${a.duration} min</p><div class="actions">${a.done?'<button class="secondary" data-reopen="'+a.id+'">Reopen</button>':`<button class="secondary" data-complete="${a.id}">Mark complete</button>${overdue?`<button class="secondary" data-reschedule="${a.id}">Reschedule</button>`:''}`}</div>`});
+ html+='</section>';
+ });
+ if(filter==='upcoming'&&list.length)html+='<div class="notice"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5"/><path d="M12 10.5v6M12 7.5h.01"/></svg><span>No other activities this week. Schedule a follow-up so nothing slips through.</span></div>';
+ $('activityFeed').innerHTML=html;
+ $('activityFeed').querySelectorAll('[data-complete]').forEach(b=>b.addEventListener('click',()=>markDone(Number(b.dataset.complete),true)));
+ $('activityFeed').querySelectorAll('[data-reopen]').forEach(b=>b.addEventListener('click',()=>markDone(Number(b.dataset.reopen),false)));
+ $('activityFeed').querySelectorAll('[data-done]').forEach(b=>b.addEventListener('change',()=>markDone(Number(b.dataset.done),b.checked)));
+ $('activityFeed').querySelectorAll('[data-reschedule]').forEach(b=>b.addEventListener('click',()=>reschedule(Number(b.dataset.reschedule))));
+}
+function markDone(id,done){const a=activities.find(x=>x.id===id);if(!a)return;a.done=done;render();notify(done?'Activity marked complete.':'Activity reopened.')}
+function reschedule(id){const a=activities.find(x=>x.id===id);if(!a)return;const value=prompt('Enter a new date (YYYY-MM-DD):',a.date>='2026-10-13'?a.date:'2026-10-13');if(value===null)return;if(!/^\d{4}-\d{2}-\d{2}$/.test(value)||Number.isNaN(Date.parse(value+'T12:00:00Z'))){notify('Please enter a valid date in YYYY-MM-DD format.');return}a.date=value;a.done=false;render();notify('Activity rescheduled to '+value+'.')}
+function clearForm(){ $('activityForm').reset();$('activityType').value='Call';$('activityTitle').value='';$('activityDate').value=localToday();$('activityTime').value='10:00';$('activityOwner').value='Craft UI';$('activityNotes').value='';$('activityReminder').checked=true}
+function focusSchedule(){ $('scheduleCard').scrollIntoView({behavior:'smooth',block:'start'});$('activityTitle').focus()}
+$('activityForm').addEventListener('submit',e=>{e.preventDefault();const a={id:nextId++,title:$('activityTitle').value.trim(),type:$('activityType').value,contact:$('activityContact').value,deal:$('activityDeal').value,date:$('activityDate').value,time:$('activityTime').value,owner:$('activityOwner').value,duration:30,notes:$('activityNotes').value.trim(),reminder:$('activityReminder').checked,done:false};if(!a.title||!a.date){notify('Please complete the required fields.');return}activities.push(a);filter='upcoming';ownerFilter='All owners';typeFilter='All types';$('ownerFilter').textContent='All owners';$('typeFilter').textContent='Calls, tasks & meetings';clearForm();render();notify('Activity saved.');});
+$('cancelActivity').addEventListener('click',()=>{clearForm();notify('Form cleared.')});
+$('scheduleTop').addEventListener('click',focusSchedule);
+$('upcomingBtn').addEventListener('click',()=>{filter='upcoming';render()});$('completedBtn').addEventListener('click',()=>{filter='completed';render()});
+$('ownerFilter').addEventListener('click',()=>{const owners=['All owners',...new Set(activities.map(a=>a.owner))];ownerFilter=owners[(owners.indexOf(ownerFilter)+1)%owners.length];$('ownerFilter').textContent=ownerFilter;render();notify('Owner filter: '+ownerFilter)});
+$('typeFilter').addEventListener('click',()=>{const types=['All types','Call','Task','Meeting','Email'];typeFilter=types[(types.indexOf(typeFilter)+1)%types.length];$('typeFilter').textContent=typeFilter==='All types'?'Calls, tasks & meetings':typeFilter;render();notify('Activity type: '+typeFilter)});
+$('globalSearch').addEventListener('input',render);
+$('notificationBtn').addEventListener('click',()=>notify('You’re all caught up on notifications.'));$('profileBtn').addEventListener('click',()=>notify('Profile menu · Connect account settings here.'));
+$('activityDate').value=localToday();
+render();
+})();
+</script>
+</body>
+</html>

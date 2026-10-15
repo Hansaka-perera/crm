@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contacts | ITGlow CRM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--blue:#0D59FC;--ink:#1C1D21;--muted:#68748A;--line:#E4E9F2;--bg:#F6F8FC;--pale:#EDF2FF;--white:#fff}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px Lato,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+button,input,select{font:inherit}button{cursor:pointer}
+.app{min-height:100vh;display:flex}
+.sidebar{width:206px;flex:0 0 206px;background:#fff;border:1px solid var(--line);padding:18px;display:flex;flex-direction:column;gap:27px}
+.brand{font-size:25px;font-weight:800;letter-spacing:-.6px;color:var(--blue);text-decoration:none;line-height:30px}
+.workspace-name{font-weight:700;margin-bottom:6px}.workspace-company{font-size:12px;color:var(--muted)}
+.nav{display:flex;flex-direction:column;gap:6px}
+.nav-item{display:flex;align-items:center;gap:12px;height:44px;padding:0 12px;border-radius:8px;color:var(--muted);font-weight:700;text-decoration:none}
+.nav-item svg{width:18px;height:18px;flex:0 0 18px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.nav-item.active{color:var(--blue);background:var(--pale)}.nav-item:hover{background:#F6F8FC}
+.workspace-card{border:1px solid var(--line);border-radius:12px;padding:22px;display:flex;flex-direction:column;align-items:flex-start;gap:18px}
+.workspace-card h2{font-size:20px;line-height:1.3;margin:0}.workspace-card p{font-size:12px;line-height:18px;color:var(--muted);margin:0}
+.pill{display:inline-flex;align-items:center;padding:4px 9px;border-radius:24px;background:var(--pale);color:var(--blue);font-size:12px;line-height:14px;font-weight:700;white-space:nowrap}
+.support-link{font-size:12px;color:var(--muted);text-decoration:none;margin-top:2px}
+.main{min-width:0;flex:1;display:flex;flex-direction:column}
+.topbar{height:73px;background:#fff;border:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:22px;padding:0 30px}
+.breadcrumb{color:var(--muted);white-space:nowrap}.search{width:288px;height:40px;border-radius:8px;background:var(--bg);display:flex;align-items:center;gap:10px;padding:0 12px;color:var(--muted)}
+.search svg,.search-icon{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.8;flex:0 0 auto}
+.search input{border:0;outline:0;background:transparent;min-width:0;width:100%;font-size:13px}
+.top-actions{display:flex;align-items:center;gap:18px}.icon-button{display:grid;place-items:center;border:0;background:transparent;color:var(--muted);padding:4px}
+.icon-button svg{width:19px;height:19px;stroke:currentColor;fill:none;stroke-width:1.8}
+.avatar{width:32px;height:32px;border-radius:50%;background:var(--pale);color:var(--blue);font-size:12px;font-weight:700;border:0}
+.content{padding:32px;display:flex;flex-direction:column;gap:22px;max-width:1550px;width:100%;margin:0 auto}
+.page-heading{display:flex;align-items:center;justify-content:space-between;gap:18px}
+.page-heading h1{font-size:32px;line-height:42px;margin:0 0 4px;color:#000;letter-spacing:-.5px}
+.page-heading p{margin:0;color:var(--muted);font-size:14px;line-height:21px}
+.primary{border:0;background:var(--blue);color:#fff;font-weight:700;border-radius:8px;min-height:42px;padding:0 22px;white-space:nowrap}
+.primary:hover{background:#084bd9}.secondary{min-height:42px;padding:0 18px;background:linear-gradient(0deg,rgba(94,129,244,.1),rgba(94,129,244,.1)),#fff;color:var(--blue);border:0;border-radius:8px;font-weight:700;white-space:nowrap}
+.secondary:hover{background:#E4EAFF}
+.tabs{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.tab{border:0;background:#fff;color:var(--muted);border-radius:8px;padding:10px 11px;min-height:36px}
+.tab.active{background:var(--pale);color:var(--blue);font-weight:700}
+.notice{display:flex;align-items:center;gap:10px;min-height:46px;padding:12px 14px;background:#FFF6E8;border-radius:8px;font-size:13px;line-height:20px}
+.notice svg{width:18px;height:18px;flex:0 0 18px;stroke:var(--blue);fill:none;stroke-width:2}
+.actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.contact-search{height:44px;display:flex;align-items:center;gap:10px;padding:0 12px;background:#fff;border:1px solid var(--line);border-radius:8px;width:min(360px,100%)}
+.contact-search input{border:0;outline:0;width:100%;min-width:0;color:var(--ink);background:transparent}
+.table-panel{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px;overflow:hidden}
+.table-wrap{overflow-x:auto;width:100%}
+table{border-collapse:separate;border-spacing:0;width:100%;min-width:1040px;table-layout:fixed;text-align:left}
+thead{background:#f8faff}
+th{font-size:11px;letter-spacing:.025em;text-transform:uppercase;font-weight:800;color:#66738a;padding:13px 14px;white-space:nowrap;border-bottom:1px solid var(--line)}
+th:first-child{width:190px}th:nth-child(2){width:155px}th:nth-child(3){width:220px}th:nth-child(4){width:140px}th:nth-child(5){width:105px}th:nth-child(6){width:150px}th:nth-child(7){width:105px}th:last-child{width:76px}
+td{font-size:12px;color:#344054;padding:10px 14px;height:66px;border-bottom:1px solid #edf0f5;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+tbody tr{background:#fff;transition:background-color .14s ease}
+tbody tr:hover{background:#f9fbff}
+tbody tr:last-child td{border-bottom:0}
+.person-cell{display:flex;align-items:center;gap:10px;min-width:0}
+.person-avatar{width:34px;height:34px;flex:0 0 34px;display:grid;place-items:center;border-radius:10px;background:#edf2ff;color:var(--blue);font-size:11px;font-weight:800;letter-spacing:.02em}
+.person-meta{display:flex;flex-direction:column;gap:3px;min-width:0}
+.person-link{display:block;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;border:0;background:transparent;color:#202b3c;font-weight:800;padding:0;text-align:left}
+.person-link:hover{color:var(--blue);text-decoration:underline}
+.person-subtitle{display:block;color:var(--muted);font-size:10px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.email-value{color:#52627a}
+.deal-count{display:inline-flex;align-items:center;justify-content:center;min-width:28px;height:26px;padding:0 8px;border:1px solid #e5eaf3;border-radius:8px;background:#f8faff;color:#344054;font-weight:800;font-variant-numeric:tabular-nums}
+.owner-chip{display:inline-flex;align-items:center;justify-content:center;min-width:30px;height:28px;padding:0 8px;border-radius:8px;background:#f1f4f9;color:#475467;font-size:11px;font-weight:800}
+.more-button{border:1px solid transparent;background:transparent;color:#8b4550;font-weight:700;font-size:11px;padding:7px 9px;border-radius:7px}
+.more-button:hover{border-color:#f2d9dc;background:#fff3f4;color:#b42332}
+.pagination{display:flex;align-items:center;gap:12px;padding:17px 0 2px}
+.pagination .summary{margin-right:auto;color:var(--muted);font-size:13px}
+.page-number{height:28px;min-width:28px;display:grid;place-items:center;border-radius:20px;background:var(--pale);color:var(--blue);font-size:12px;font-weight:700}
+.bottom-panels{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.panel{background:#fff;border:1px solid var(--line);border-radius:12px;padding:22px;display:flex;flex-direction:column;align-items:flex-start;gap:16px;min-width:0}
+.panel h2{font-size:20px;line-height:26px;margin:0}.panel p{margin:0;font-size:14px;line-height:21px}
+.panel .subtle{font-size:13px;line-height:20px;color:var(--muted)}
+.file-input{display:none}.footer{color:var(--muted);font-size:12px;line-height:18px}
+.empty{display:none;padding:28px;text-align:center;color:var(--muted)}
+.toast{position:fixed;right:22px;bottom:22px;background:#1C1D21;color:#fff;padding:13px 16px;border-radius:10px;box-shadow:0 8px 28px #0002;max-width:min(380px,calc(100vw - 40px));display:none;z-index:10}
+.toast.show{display:block}
+.modal-backdrop{position:fixed;inset:0;background:#10182866;display:none;align-items:center;justify-content:center;padding:18px;z-index:20}
+.modal-backdrop.show{display:flex}.modal{background:#fff;border-radius:14px;padding:24px;width:min(480px,100%);box-shadow:0 20px 60px #0002}
+.modal h2{margin:0 0 18px;font-size:22px}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.field{display:flex;flex-direction:column;gap:7px}.field.full{grid-column:1/-1}.field label{font-size:12px;font-weight:700;color:var(--muted)}
+.field input,.field select{width:100%;height:42px;border:1px solid var(--line);border-radius:8px;padding:0 11px;background:#fff;outline-color:#AFC4FF}
+.modal-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:22px}
+@media(min-width:1500px){.sidebar{width:216px;flex-basis:216px}.content{padding:32px}}
+@media(max-width:1100px){.sidebar{width:190px;flex-basis:190px;padding:16px}.content{padding:24px}.topbar{padding:0 24px}.bottom-panels{gap:16px}.panel{padding:18px}}
+@media(max-width:800px){.sidebar{width:68px;flex-basis:68px;padding:16px 9px;align-items:center;gap:24px}.brand{font-size:18px;letter-spacing:-.8px}.workspace-meta,.nav-label,.workspace-card,.support-link{display:none}.nav{width:100%}.nav-item{justify-content:center;padding:0}.main{width:calc(100% - 68px)}.topbar{height:auto;min-height:68px;padding:14px;gap:12px;flex-wrap:wrap}.breadcrumb{font-size:12px}.search{order:3;width:100%}.top-actions{margin-left:auto}.content{padding:20px 16px}.bottom-panels{grid-template-columns:1fr}}
+@media(max-width:520px){.page-heading{align-items:flex-start}.page-heading h1{font-size:27px;line-height:36px}.page-heading p{max-width:250px}.page-heading .primary{padding:0 12px;font-size:12px}.tabs{gap:6px}.tab{font-size:12px}.actions{gap:8px}.contact-search{width:100%;flex:1 1 100%}.actions .secondary{flex:1 1 auto;padding:0 10px;font-size:12px}.table-panel{padding:10px}.pagination{gap:8px}.pagination .summary{font-size:12px}.pagination .secondary{padding:0 10px;min-height:38px}.panel{padding:16px}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}}
+
+/* Shared interaction polish */
+:where(a,button,input,select,textarea,[tabindex]):focus-visible{outline:3px solid #9bb8ff;outline-offset:2px}
+:where(button,[role="button"]):disabled{opacity:.55;cursor:not-allowed}
+:where(input,select,textarea):disabled{opacity:.65;cursor:not-allowed}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+</style>
+  <link rel="stylesheet" href="assets/css/design-system.css">
+</head>
+<body>
+<div class="app">
+<aside class="itg-sidebar" data-itglow-sidebar aria-label="Application sidebar"></aside>
+<main class="main">
+<header class="itg-topbar" data-itglow-topbar aria-label="Workspace toolbar"></header>
+<script src="assets/js/app.js"></script>
+<div class="content" id="contacts">
+  <section class="page-heading"><div><h1>Contacts</h1><p>Keep every relationship and next step in view.</p></div><button class="primary" id="addPerson">＋ Add person</button></section>
+  <nav class="tabs" aria-label="Contact views">
+    <button class="tab active" data-tab="People">People</button><button class="tab" data-tab="Organizations">Organizations</button><button class="tab" data-tab="Contacts timeline">Contacts timeline</button><button class="tab" data-tab="Merge duplicates">Merge duplicates</button>
+  </nav>
+  <div class="notice"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5"/><path d="M12 10.5v6M12 7.5h.01"/></svg><span>Legacy sample data · These 3 records are unverified. Original emails, dates and values are retained exactly.</span></div>
+  <section class="actions" aria-label="Contact actions">
+    <label class="contact-search"><svg class="search-icon" viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="7.2"/><path d="m16 16 5 5"/></svg><input id="contactSearch" type="search" placeholder="Search people, organization or owner" aria-label="Search contacts"></label>
+    <button class="secondary" id="filterButton">Filters · All people</button>
+    <button class="secondary" id="importButton">Import contacts</button><input class="file-input" id="csvFile" type="file" accept=".csv,text/csv">
+    <button class="secondary" id="exportButton">Export</button>
+  </section>
+  <section class="table-panel">
+    <div class="table-wrap">
+      <table aria-label="Contacts table">
+        <thead><tr><th>Person</th><th>Organization</th><th>Email</th><th>Phone</th><th>Closed deals</th><th>Next activity date</th><th>Owner</th><th></th></tr></thead>
+        <tbody id="contactRows"></tbody>
+      </table>
+      <div class="empty" id="emptyState">No contacts match your search.</div>
+    </div>
+    <div class="pagination"><span class="summary" id="tableSummary">Showing 1–3 of 3 people</span><button class="secondary" id="previousPage">Previous</button><span class="page-number">1</span><button class="secondary" id="nextPage">Next</button></div>
+  </section>
+  <section class="bottom-panels">
+    <article class="panel"><h2>Contact data health</h2><p>3 legacy records need review before outreach.</p><p class="subtle">Email formats and next activity dates have not been verified. Keep original values until confirmed by the contact.</p><button class="secondary" id="reviewData">Review legacy data</button></article>
+    <article class="panel"><h2>Import contacts</h2><p>Start with a CSV containing name, organization, email and owner.</p><p class="subtle" id="importStatus">No imports in progress. Your existing records will stay intact.</p><button class="secondary" id="chooseCsv">Choose CSV file</button></article>
+  </section>
+  <footer class="footer">ITGlow Technology · WhiteOnWhite workspace · Static review</footer>
+</div>
+</main>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div class="modal-backdrop" id="personModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal">
+    <h2 id="modalTitle">Add person</h2>
+    <form id="personForm">
+      <div class="form-grid">
+        <div class="field"><label for="personName">Person name *</label><input id="personName" name="name" required placeholder="e.g. Maya Chen"></div>
+        <div class="field"><label for="personOrg">Organization</label><input id="personOrg" name="organization" placeholder="Company name"></div>
+        <div class="field"><label for="personEmail">Email</label><input id="personEmail" name="email" type="text" placeholder="name@company.com"></div>
+        <div class="field"><label for="personPhone">Phone</label><input id="personPhone" name="phone" placeholder="Phone number"></div>
+        <div class="field"><label for="personOwner">Owner</label><input id="personOwner" name="owner" placeholder="Owner initials"></div>
+        <div class="field"><label for="personDeals">Closed deals</label><input id="personDeals" name="deals" type="number" min="0" value="0"></div>
+      </div>
+      <div class="modal-actions"><button type="button" class="secondary" id="cancelModal">Cancel</button><button type="submit" class="primary">Add person</button></div>
+    </form>
+  </div>
+</div>
+  <script>
+const $=id=>document.getElementById(id), tbody=$('contactRows'), modal=$('personModal');
+let contacts=[], query='', page=1, zeroDealFilter=false; const pageSize=25;
+function notify(message){window.ITGlowUI.toast(message)}
+function visibleContacts(){return contacts.filter(c=>(!query||Object.values(c).join(' ').toLowerCase().includes(query))&&(!zeroDealFilter||Number(c.closedDeals||0)===0))}
+function render(){const rows=visibleContacts(),pageCount=Math.max(1,Math.ceil(rows.length/pageSize));page=Math.min(page,pageCount);const shown=rows.slice((page-1)*pageSize,page*pageSize);
+ tbody.replaceChildren();for(const c of shown){const tr=document.createElement('tr');tr.dataset.id=String(c.id);const values=[c.name,c.organization||'—',c.email||'—',c.phone||'—',c.closedDeals??0,c.nextActivityDate||'—',c.owner||'—'];
+ values.forEach((value,i)=>{const td=document.createElement('td');if(i===0){const cell=document.createElement('div');cell.className='person-cell';const avatar=document.createElement('span');avatar.className='person-avatar';avatar.setAttribute('aria-hidden','true');avatar.textContent=String(value).trim().split(/\s+/).filter(Boolean).slice(0,2).map(part=>part[0]).join('').toUpperCase()||'—';const meta=document.createElement('span');meta.className='person-meta';const b=document.createElement('button');b.className='person-link';b.dataset.person=String(c.id);b.textContent=String(value);const sub=document.createElement('span');sub.className='person-subtitle';sub.textContent=c.role||'Contact';meta.append(b,sub);cell.append(avatar,meta);td.append(cell)}else if(i===2){td.className='email-value';td.textContent=String(value)}else if(i===4){const badge=document.createElement('span');badge.className='deal-count';badge.textContent=String(value);td.append(badge)}else if(i===6){const chip=document.createElement('span');chip.className='owner-chip';chip.textContent=String(value);td.append(chip)}else td.textContent=String(value);tr.append(td)});
+ const td=document.createElement('td'),del=document.createElement('button');del.className='more-button';del.textContent='Delete';del.dataset.delete=String(c.id);del.setAttribute('aria-label','Delete '+String(c.name));td.append(del);tr.append(td);tbody.append(tr)}
+ $('emptyState').textContent='No contacts match your search or filters.';$('emptyState').style.display=shown.length?'none':'block';$('tableSummary').textContent=rows.length?`Showing ${(page-1)*pageSize+1}–${(page-1)*pageSize+shown.length} of ${rows.length} people`:'No contacts found';$('previousPage').disabled=page<=1;$('nextPage').disabled=page>=pageCount;document.querySelector('.page-number').textContent=String(page);
+}
+async function load(){try{contacts=await window.ITGlowAPI.list('contacts');render()}catch(error){$('emptyState').textContent='Could not load contacts. Check your sign-in and connection, then refresh.';$('emptyState').style.display='block';notify('Unable to load contacts: '+error.message)}}
+ function filterContacts(){query=[$('contactSearch').value,$('globalSearch').value].filter(Boolean).join(' ').trim().toLowerCase();page=1;render()}
+$('contactSearch').addEventListener('input',filterContacts);$('globalSearch').addEventListener('input',filterContacts);
+function openModal(){modal.classList.add('show');$('personName').focus()}function closeModal(){modal.classList.remove('show')}
+$('addPerson').addEventListener('click',openModal);$('cancelModal').addEventListener('click',closeModal);modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+$('personForm').addEventListener('submit',async e=>{e.preventDefault();const data=new FormData(e.target);const record={name:String(data.get('name')).trim(),organization:String(data.get('organization')||''),email:String(data.get('email')||''),phone:String(data.get('phone')||''),closedDeals:Number(data.get('deals')||0),owner:String(data.get('owner')||'')};try{await window.ITGlowAPI.create('contacts',record);closeModal();e.target.reset();await load();notify(record.name+' added.')}catch(error){notify(error.message)}});
+tbody.addEventListener('click',async e=>{const del=e.target.closest('[data-delete]');if(del&&confirm('Delete this contact?')){try{await window.ITGlowAPI.remove('contacts',Number(del.dataset.delete));await load();notify('Contact deleted.')}catch(error){notify(error.message)}}});
+$('filterButton').addEventListener('click',()=>{zeroDealFilter=!zeroDealFilter;$('filterButton').dataset.filtered=zeroDealFilter?'yes':'no';$('filterButton').textContent=zeroDealFilter?'Filters · 0 closed deals':'Filters · All people';render()});
+$('exportButton').addEventListener('click',()=>{const rows=[['Person','Organization','Email','Phone','Closed deals','Next activity date','Owner'],...visibleContacts().map(c=>[c.name,c.organization,c.email,c.phone,c.closedDeals,c.nextActivityDate,c.owner])];const csv=rows.map(r=>r.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(',')).join('\r\n');const blob=new Blob([csv],{type:'text/csv;charset=utf-8;'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='itglow-contacts.csv';a.click();URL.revokeObjectURL(url)});
+$('importButton').addEventListener('click',()=>$('csvFile').click());$('chooseCsv').addEventListener('click',()=>$('csvFile').click());$('csvFile').addEventListener('change',e=>{if(e.target.files[0]){$('importStatus').textContent='CSV import is not implemented; no records were changed.';notify('Import is not available yet.')}});
+$('reviewData').addEventListener('click',()=>notify('Review contact records for accuracy before outreach.'));$('previousPage').addEventListener('click',()=>{page--;render()});$('nextPage').addEventListener('click',()=>{page++;render()});
+document.addEventListener('click',e=>{const person=e.target.closest('[data-person]');if(person)location.href='itglow-crm-contact-detail.html?id='+encodeURIComponent(person.dataset.person)});
+document.querySelectorAll('[data-tab]').forEach(tab=>tab.addEventListener('click',()=>{document.querySelectorAll('[data-tab]').forEach(t=>t.classList.remove('active'));tab.classList.add('active');if(tab.dataset.tab==='Organizations')location.href='itglow-crm-organizations.html';else if(tab.dataset.tab!=='People')notify(tab.dataset.tab+' view is not available yet.')}));
+void load();</script>
+</body>
+</html>

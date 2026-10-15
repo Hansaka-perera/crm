@@ -1,0 +1,985 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Details | ITGlow</title>
+
+    <!-- Lato Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;800&display=swap"
+          rel="stylesheet">
+
+    <style>
+        /* =========================
+           GLOBAL STYLES
+        ========================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0D59FC;
+            --blue: #5E81F4;
+            --dark-blue: #1B51E5;
+            --heading: #1C1D21;
+            --text: #8181A5;
+            --muted: #68748A;
+            --border: #ECECF2;
+            --white: #FFFFFF;
+            --footer-bg: #F6F8FC;
+            --hint-bg: #EDF2FF;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background: var(--white);
+            color: var(--heading);
+            min-height: 100vh;
+        }
+
+        button, input, select {
+            font: inherit;
+        }
+
+        button, a, select {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        /* =========================
+           PAGE LAYOUT
+        ========================= */
+
+        .auth-page {
+            width: 100%;
+            min-height: 960px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        .auth-header {
+            height: 77px;
+            flex-shrink: 0;
+            padding: 24px 48px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--white);
+        }
+
+        .brand {
+            color: var(--primary);
+            font-size: 24px;
+            font-weight: 800;
+            line-height: 29px;
+        }
+
+        .support-link {
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 16px;
+        }
+
+        .support-link:hover {
+            color: var(--primary);
+        }
+
+        /* =========================
+           MAIN CONTENT
+        ========================= */
+
+        .auth-main {
+            flex: 1;
+            min-height: 700px;
+            display: flex;
+            position: relative;
+            overflow: hidden;
+            background: var(--blue);
+        }
+
+        /* =========================
+           LEFT FORM PANEL
+        ========================= */
+
+        .auth-form-panel {
+            width: 53.2%;
+            min-height: 100%;
+            padding: 70px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+            background: var(--white);
+            border-radius: 0 16px 16px 0;
+        }
+
+        .auth-form-container {
+            width: 100%;
+            max-width: 355px;
+            display: flex;
+            flex-direction: column;
+            gap: 104px;
+        }
+
+        /* =========================
+           HEADING
+        ========================= */
+
+        .form-heading {
+            display: flex;
+            flex-direction: column;
+            gap: 11px;
+        }
+
+        .form-heading h1 {
+            font-size: 32px;
+            line-height: 1.3;
+            font-weight: 700;
+            letter-spacing: -0.4px;
+            color: var(--heading);
+        }
+
+        .form-heading p {
+            font-size: 14px;
+            line-height: 21px;
+            color: var(--text);
+        }
+
+        /* =========================
+           COMPANY FORM
+        ========================= */
+
+        .company-form {
+            display: flex;
+            flex-direction: column;
+            gap: 59px;
+            width: 100%;
+        }
+
+        .form-fields {
+            display: flex;
+            flex-direction: column;
+            gap: 13px;
+        }
+
+        .form-field {
+            width: 100%;
+            height: 68px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .form-field label {
+            font-size: 14px;
+            line-height: 21px;
+            font-weight: 400;
+            color: var(--text);
+            margin-bottom: 2px;
+        }
+
+        .field-control {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-field input,
+        .form-field select {
+            flex: 1;
+            min-width: 0;
+            width: 100%;
+            height: 25px;
+            padding: 0;
+            border: none;
+            outline: none;
+            background: transparent;
+            color: var(--heading);
+            font-size: 14px;
+            line-height: 21px;
+            font-weight: 700;
+        }
+
+        .form-field input::placeholder {
+            color: var(--text);
+            opacity: 1;
+        }
+
+        .form-field select {
+            appearance: none;
+            -webkit-appearance: none;
+            cursor: pointer;
+        }
+
+        .form-field select.muted-value {
+            color: var(--text);
+        }
+
+        .form-field:focus-within {
+            border-bottom-color: var(--primary);
+        }
+
+        /* Add your field icons manually.
+           Suggested assets:
+           assets/company.svg
+           assets/phone.svg
+        */
+
+        .field-icon {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Dropdown arrow placeholder */
+
+        .select-arrow {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text);
+            font-size: 14px;
+        }
+
+        /* =========================
+           NAVIGATION BUTTONS
+        ========================= */
+
+        .form-buttons {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            width: 100%;
+        }
+
+        .btn {
+            flex: 1;
+            min-width: 0;
+            height: 46px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            line-height: 17px;
+            font-weight: 700;
+            transition:
+                background 0.2s ease,
+                transform 0.2s ease;
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        .btn-primary {
+            color: var(--white);
+            background: var(--primary);
+        }
+
+        .btn-primary:hover {
+            background: #0849D8;
+        }
+
+        .btn-secondary {
+            color: var(--primary);
+            background: rgba(94, 129, 244, 0.1);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(94, 129, 244, 0.18);
+        }
+
+        /* =========================
+           RIGHT ILLUSTRATION PANEL
+        ========================= */
+
+        .auth-illustration {
+            flex: 1;
+            min-width: 0;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(
+                98.58% 98.58% at 57.43% 48.15%,
+                #5E81F4 0%,
+                #1B51E5 100%
+            );
+        }
+
+        /* Background decorations */
+
+        .illustration-shape {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(27, 81, 229, 0.17);
+            pointer-events: none;
+        }
+
+        .shape-one {
+            width: 520px;
+            height: 520px;
+            top: -120px;
+            right: -180px;
+        }
+
+        .shape-two {
+            width: 430px;
+            height: 430px;
+            bottom: -100px;
+            left: 10%;
+        }
+
+        .shape-three {
+            width: 320px;
+            height: 320px;
+            top: 18%;
+            right: 10%;
+            opacity: 0.6;
+        }
+
+        .illustration-placeholder {
+            width: 100%;
+            max-width: 520px;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Add your Company Details illustration manually.
+
+           Example:
+
+           <img
+               src="assets/companey_details.png"
+               alt="Company details illustration"
+               class="main-illustration"
+           >
+        */
+
+        .main-illustration {
+            display: block;
+            width: 100%;
+            max-width: 480px;
+            height: auto;
+            object-fit: contain;
+        }
+
+        /* =========================
+           GUIDANCE PANEL
+        ========================= */
+
+        .supporting-guidance {
+            min-height: 92px;
+            padding: 23px max(24px, calc((100% - 1088px) / 2));
+            display: flex;
+            align-items: center;
+            background: var(--footer-bg);
+        }
+
+        .guidance-message {
+            width: 100%;
+            min-height: 46px;
+            padding: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--hint-bg);
+            border-radius: 8px;
+        }
+
+        /* Add your information icon asset manually. */
+
+        .guidance-icon {
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+        }
+
+        .guidance-message p {
+            font-size: 13px;
+            line-height: 20px;
+            color: var(--heading);
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        .auth-footer {
+            min-height: 66px;
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            background: var(--white);
+        }
+
+        .footer-company,
+        .footer-legal {
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 18px;
+        }
+
+        .footer-legal {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            white-space: nowrap;
+        }
+
+        .footer-legal a:hover {
+            color: var(--primary);
+        }
+
+        /* =========================
+           TABLET
+        ========================= */
+
+        @media (max-width: 1000px) {
+            .auth-form-panel {
+                width: 58%;
+                padding: 50px 35px;
+            }
+
+            .auth-form-container {
+                max-width: 355px;
+                gap: 75px;
+            }
+
+            .form-heading h1 {
+                font-size: 29px;
+            }
+
+            .company-form {
+                gap: 45px;
+            }
+
+            .illustration-placeholder {
+                max-width: 370px;
+            }
+
+            .supporting-guidance {
+                padding: 23px 40px;
+            }
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 700px) {
+            .auth-header {
+                height: 70px;
+                padding: 20px 24px;
+            }
+
+            .brand {
+                font-size: 22px;
+            }
+
+            .auth-main {
+                flex-direction: column;
+                min-height: auto;
+                overflow: visible;
+            }
+
+            .auth-form-panel {
+                width: 100%;
+                min-height: auto;
+                padding: 48px 24px;
+                border-radius: 0;
+            }
+
+            .auth-form-container {
+                max-width: 440px;
+                gap: 44px;
+            }
+
+            .form-heading h1 {
+                font-size: 29px;
+            }
+
+            .company-form {
+                gap: 40px;
+            }
+
+            .auth-illustration {
+                min-height: 320px;
+                padding: 30px 20px;
+            }
+
+            .illustration-placeholder {
+                min-height: 260px;
+            }
+
+            .supporting-guidance {
+                min-height: auto;
+                padding: 20px 24px;
+            }
+
+            .guidance-message {
+                align-items: flex-start;
+            }
+
+            .auth-footer {
+                padding: 22px 24px;
+            }
+        }
+
+        /* =========================
+           SMALL MOBILE
+        ========================= */
+
+        @media (max-width: 380px) {
+            .auth-header {
+                padding: 18px;
+            }
+
+            .auth-form-panel {
+                padding: 40px 20px;
+            }
+
+            .form-heading h1 {
+                font-size: 27px;
+            }
+
+            .form-buttons {
+                gap: 8px;
+            }
+
+            .btn {
+                font-size: 13px;
+            }
+
+            .auth-footer {
+                padding: 20px;
+                flex-wrap: wrap;
+            }
+        }
+    
+/* Shared interaction polish */
+:where(a,button,input,select,textarea,[tabindex]):focus-visible{outline:3px solid #9bb8ff;outline-offset:2px}
+:where(button,[role="button"]):disabled{opacity:.55;cursor:not-allowed}
+:where(input,select,textarea):disabled{opacity:.65;cursor:not-allowed}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+</style>
+  <link rel="stylesheet" href="assets/css/design-system.css">
+  <script src="assets/js/app.js"></script>
+</head>
+
+<body>
+
+    <div class="auth-page">
+
+        <!-- HEADER -->
+
+        <header class="auth-header">
+
+            <a href="#" class="brand">ITGlow</a>
+
+            <a href="#" class="support-link">
+                Need help? ↗
+            </a>
+
+        </header>
+
+
+        <!-- MAIN SECTION -->
+
+        <main class="auth-main">
+
+            <!-- LEFT: COMPANY DETAILS FORM -->
+
+            <section class="auth-form-panel">
+
+                <div class="auth-form-container">
+
+                    <!-- HEADING -->
+
+                    <div class="form-heading">
+
+                        <h1>
+                            Tell us about<br>
+                            your company.
+                        </h1>
+
+                        <p>
+                            Step 2 of 3 · Account ✓ / Company / Ready
+                        </p>
+
+                    </div>
+
+
+                    <!-- COMPANY DETAILS -->
+
+                    <form class="company-form" id="companyForm">
+
+                        <div class="form-fields">
+
+                            <!-- COMPANY NAME -->
+
+                            <div class="form-field">
+
+                                <label for="companyName">
+                                    Company name
+                                </label>
+
+                                <div class="field-control">
+
+                                    <input
+                                        type="text"
+                                        id="companyName"
+                                        name="companyName"
+                                        placeholder="Enter company name"
+                                        value="WhiteOnWhite"
+                                        autocomplete="organization"
+                                        required
+                                    >
+
+                                    <!-- Add company icon asset here manually -->
+
+                                    <span class="field-icon">
+                                        <!-- Company icon placeholder -->
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- NUMBER OF EMPLOYEES -->
+
+                            <div class="form-field">
+
+                                <label for="employees">
+                                    Employees
+                                </label>
+
+                                <div class="field-control">
+
+                                    <select
+                                        id="employees"
+                                        name="employees"
+                                        required
+                                    >
+                                        <option value="1-10" selected>
+                                            1–10 Employees
+                                        </option>
+
+                                        <option value="11-50">
+                                            11–50 Employees
+                                        </option>
+
+                                        <option value="51-200">
+                                            51–200 Employees
+                                        </option>
+
+                                        <option value="201-500">
+                                            201–500 Employees
+                                        </option>
+
+                                        <option value="501+">
+                                            501+ Employees
+                                        </option>
+                                    </select>
+
+                                    <span class="select-arrow">
+                                        v
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- BUSINESS TYPE -->
+
+                            <div class="form-field">
+
+                                <label for="businessType">
+                                    Business
+                                </label>
+
+                                <div class="field-control">
+
+                                    <select
+                                        id="businessType"
+                                        name="businessType"
+                                        class="muted-value"
+                                        required
+                                    >
+                                        <option value="technology" selected>
+                                            Technology services
+                                        </option>
+
+                                        <option value="software">
+                                            Software development
+                                        </option>
+
+                                        <option value="consulting">
+                                            Consulting
+                                        </option>
+
+                                        <option value="retail">
+                                            Retail
+                                        </option>
+
+                                        <option value="ecommerce">
+                                            E-commerce
+                                        </option>
+
+                                        <option value="finance">
+                                            Financial services
+                                        </option>
+
+                                        <option value="education">
+                                            Education
+                                        </option>
+
+                                        <option value="healthcare">
+                                            Healthcare
+                                        </option>
+
+                                        <option value="manufacturing">
+                                            Manufacturing
+                                        </option>
+
+                                        <option value="other">
+                                            Other
+                                        </option>
+                                    </select>
+
+                                    <span class="select-arrow">
+                                        v
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- PHONE NUMBER -->
+
+                            <div class="form-field">
+
+                                <label for="phone">
+                                    Phone
+                                </label>
+
+                                <div class="field-control">
+
+                                    <input
+                                        type="tel"
+                                        id="phone"
+                                        name="phone"
+                                        placeholder="+1 202 555 0142"
+                                        value="+1 202 555 0142"
+                                        autocomplete="tel"
+                                    >
+
+                                    <!-- Add phone icon asset here manually -->
+
+                                    <span class="field-icon">
+                                        <!-- Phone icon placeholder -->
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- BACK AND CONTINUE -->
+
+                        <div class="form-buttons">
+
+                            <button
+                                type="button"
+                                class="btn btn-secondary"
+                                id="backButton"
+                            >
+                                Back
+                            </button>
+
+                            <button
+                                type="submit"
+                                class="btn btn-primary"
+                            >
+                                Continue
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </section>
+
+
+            <!-- RIGHT: ILLUSTRATION -->
+
+            <section
+                class="auth-illustration"
+                aria-label="Company details illustration"
+            >
+
+                <!-- Decorative background shapes -->
+
+                <div class="illustration-shape shape-one"></div>
+                <div class="illustration-shape shape-two"></div>
+                <div class="illustration-shape shape-three"></div>
+
+                <div class="illustration-placeholder">
+
+                    <!-- Add your company illustration asset manually.
+
+                         Example:
+
+                         <img
+                             src="assets/companey_details.png"
+                             alt="Company calendar illustration"
+                             class="main-illustration"
+                         >
+                    -->
+
+                </div>
+
+            </section>
+
+        </main>
+
+
+        <!-- GUIDANCE PANEL -->
+
+        <section class="supporting-guidance">
+
+            <div class="guidance-message">
+
+                <!-- Add your information icon asset manually -->
+
+                <span class="guidance-icon">
+                    <!-- Information icon placeholder -->
+                </span>
+
+                <p>
+                    Your account is ready. Add your company details,
+                    then enter your workspace. You can edit these later in More.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- FOOTER -->
+
+        <footer class="auth-footer">
+
+            <p class="footer-company">
+                ITGlow Technology
+            </p>
+
+            <nav class="footer-legal" aria-label="Legal links">
+
+                <a href="legal-documents.html">Privacy</a>
+
+                <span>·</span>
+
+                <a href="legal-documents.html">Terms</a>
+
+            </nav>
+
+        </footer>
+
+    </div>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+        // Back to Step 1: Account Details
+
+        document.getElementById("backButton").addEventListener(
+            "click",
+            function () {
+                window.location.href = "sign_up.html";
+            }
+        );
+
+
+        // Company form submission
+
+        document.getElementById("companyForm").addEventListener(
+            "submit",
+            async function (event) {
+                event.preventDefault();
+
+                const companyDetails = {
+                    companyName:
+                        document.getElementById("companyName").value.trim(),
+
+                    employees:
+                        document.getElementById("employees").value,
+
+                    businessType:
+                        document.getElementById("businessType").value,
+
+                    phone:
+                        document.getElementById("phone").value.trim()
+                };
+
+                const submitButton = event.currentTarget.querySelector('[type="submit"]');
+                window.ITGlowUI.setBusy(submitButton, true, "Saving…");
+                try {
+                    await window.ITGlowAPI.updateWorkspace(companyDetails.companyName);
+                    await window.ITGlowAPI.saveSettings({
+                        employees: companyDetails.employees,
+                        businessType: companyDetails.businessType,
+                        phone: companyDetails.phone
+                    });
+                    window.location.assign("registration-complete.html");
+                } catch (error) {
+                    window.ITGlowUI.toast(error instanceof Error ? error.message : "Could not save workspace details.", { kind: "error" });
+                    window.ITGlowUI.setBusy(submitButton, false);
+                }
+            }
+        );
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Create Account | ITGlow</title>
+
+    <!-- Lato Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;800&display=swap"
+          rel="stylesheet">
+
+    <style>
+        /* =========================
+           GLOBAL
+        ========================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0D59FC;
+            --blue: #5E81F4;
+            --dark-blue: #1B51E5;
+            --heading: #1C1D21;
+            --text: #8181A5;
+            --muted: #68748A;
+            --border: #ECECF2;
+            --white: #FFFFFF;
+            --footer-bg: #F6F8FC;
+            --hint-bg: #EDF2FF;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            color: var(--heading);
+            background: var(--white);
+            min-height: 100vh;
+        }
+
+        button,
+        input {
+            font: inherit;
+        }
+
+        button,
+        a {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        /* =========================
+           PAGE LAYOUT
+        ========================= */
+
+        .auth-page {
+            width: 100%;
+            min-height: 960px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        .auth-header {
+            height: 77px;
+            padding: 24px 48px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-shrink: 0;
+        }
+
+        .brand {
+            color: var(--primary);
+            font-size: 24px;
+            font-weight: 800;
+            line-height: 29px;
+        }
+
+        .support-link {
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 16px;
+        }
+
+        .support-link:hover {
+            color: var(--primary);
+        }
+
+        /* =========================
+           MAIN SECTION
+        ========================= */
+
+        .auth-main {
+            display: flex;
+            flex: 1;
+            min-height: 700px;
+            background: var(--blue);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* =========================
+           LEFT FORM PANEL
+        ========================= */
+
+        .auth-form-panel {
+            width: 53.2%;
+            min-height: 100%;
+            padding: 70px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--white);
+            border-radius: 0 16px 16px 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .auth-form-container {
+            width: 100%;
+            max-width: 373px;
+            display: flex;
+            flex-direction: column;
+            gap: 62px;
+        }
+
+        /* =========================
+           HEADING
+        ========================= */
+
+        .form-heading {
+            display: flex;
+            flex-direction: column;
+            gap: 11px;
+        }
+
+        .form-heading h1 {
+            font-size: 32px;
+            line-height: 1.3;
+            font-weight: 700;
+            letter-spacing: -0.4px;
+            color: var(--heading);
+        }
+
+        .form-heading p {
+            color: var(--text);
+            font-size: 14px;
+            line-height: 21px;
+        }
+
+        /* =========================
+           SIGN UP FORM
+        ========================= */
+
+        .signup-form {
+            display: flex;
+            flex-direction: column;
+            gap: 34px;
+            width: 100%;
+        }
+
+        .form-fields {
+            display: flex;
+            flex-direction: column;
+            gap: 13px;
+        }
+
+        .form-field {
+            width: 100%;
+            height: 68px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .form-field label {
+            color: var(--text);
+            font-size: 14px;
+            line-height: 21px;
+            font-weight: 400;
+            margin-bottom: 2px;
+        }
+
+        .field-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+        }
+
+        .form-field input {
+            flex: 1;
+            min-width: 0;
+            height: 25px;
+            border: none;
+            outline: none;
+            background: transparent;
+            color: var(--heading);
+            font-size: 14px;
+            line-height: 21px;
+            font-weight: 700;
+        }
+
+        .form-field input::placeholder {
+            color: var(--text);
+            opacity: 1;
+            font-weight: 700;
+        }
+
+        .form-field:focus-within {
+            border-bottom-color: var(--primary);
+        }
+
+        /* Add your full-name icon asset here manually.
+           Keep this area empty if you don't need the icon.
+        */
+
+        .field-icon {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* EMAIL SUFFIX */
+
+        .email-suffix {
+            font-size: 18px;
+            color: var(--heading);
+            font-weight: 400;
+            padding-right: 5px;
+        }
+
+        /* PASSWORD TOGGLE */
+
+        .password-toggle {
+            border: none;
+            background: transparent;
+            color: var(--text);
+            font-size: 12px;
+            line-height: 16px;
+            padding: 4px 0 4px 8px;
+            flex-shrink: 0;
+        }
+
+        .password-toggle:hover {
+            color: var(--primary);
+        }
+
+        /* =========================
+           TERMS AND CONDITIONS
+        ========================= */
+
+        .terms-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-height: 20px;
+            cursor: pointer;
+        }
+
+        .terms-option input {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+            border: 2px solid var(--border);
+            border-radius: 50%;
+            background: var(--white);
+            display: grid;
+            place-content: center;
+            cursor: pointer;
+        }
+
+        .terms-option input:checked {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .terms-option input:checked::before {
+            content: "";
+            width: 8px;
+            height: 8px;
+            background: var(--white);
+            border-radius: 50%;
+        }
+
+        .terms-option span {
+            color: var(--heading);
+            font-size: 14px;
+            line-height: 21px;
+            font-weight: 700;
+        }
+
+        .terms-option a {
+            color: inherit;
+        }
+
+        .terms-option a:hover {
+            color: var(--primary);
+            text-decoration: underline;
+        }
+
+        /* =========================
+           BUTTONS
+        ========================= */
+
+        .form-buttons {
+            display: flex;
+            gap: 9px;
+            width: 100%;
+        }
+
+        .btn {
+            flex: 1;
+            min-width: 0;
+            height: 46px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            line-height: 17px;
+            font-weight: 700;
+            transition: background 0.2s ease,
+                        transform 0.2s ease;
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: #0849D8;
+        }
+
+        .btn-secondary {
+            background: rgba(94, 129, 244, 0.1);
+            color: var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(94, 129, 244, 0.18);
+        }
+
+        /* =========================
+           SOCIAL LOGIN
+        ========================= */
+
+        .social-login {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .social-login p {
+            color: var(--text);
+            font-size: 14px;
+            line-height: 21px;
+        }
+
+        .social-buttons {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .social-button {
+            width: 46px;
+            height: 46px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text);
+            transition: border-color 0.2s ease;
+        }
+
+        .social-button:hover {
+            border-color: var(--primary);
+        }
+
+        /* Add your Twitter, Google and Facebook assets
+           inside their corresponding social-button elements.
+        */
+
+        /* =========================
+           RIGHT ILLUSTRATION PANEL
+        ========================= */
+
+        .auth-illustration {
+            flex: 1;
+            min-width: 0;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background:
+                radial-gradient(
+                    98.58% 98.58% at 57.43% 48.15%,
+                    #5E81F4 0%,
+                    #1B51E5 100%
+                );
+        }
+
+        /* Decorative background shapes */
+
+        .illustration-shape {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(27, 81, 229, 0.17);
+            pointer-events: none;
+        }
+
+        .shape-one {
+            width: 430px;
+            height: 430px;
+            top: -100px;
+            right: -160px;
+        }
+
+        .shape-two {
+            width: 440px;
+            height: 440px;
+            bottom: -120px;
+            left: 10%;
+        }
+
+        .shape-three {
+            width: 300px;
+            height: 300px;
+            top: 20%;
+            right: 10%;
+            opacity: 0.6;
+        }
+
+        .illustration-placeholder {
+            width: 100%;
+            max-width: 480px;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Add your sign-up illustration here manually.
+
+           Example:
+
+           <img
+               src="assets/sing_up.png"
+               alt="Create your ITGlow account"
+               class="main-illustration"
+           >
+        */
+
+        .main-illustration {
+            display: block;
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            object-fit: contain;
+        }
+
+        /* =========================
+           PASSWORD GUIDANCE PANEL
+        ========================= */
+
+        .supporting-guidance {
+            min-height: 96px;
+            padding: 23px max(24px, calc((100% - 1088px) / 2));
+            display: flex;
+            align-items: center;
+            background: var(--footer-bg);
+        }
+
+        .password-hint {
+            width: 100%;
+            min-height: 46px;
+            padding: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--hint-bg);
+            border-radius: 8px;
+        }
+
+        /* Add your information icon asset here manually. */
+
+        .hint-icon-placeholder {
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+        }
+
+        .password-hint p {
+            color: var(--heading);
+            font-size: 13px;
+            line-height: 20px;
+            font-weight: 400;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        .auth-footer {
+            min-height: 66px;
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            background: var(--white);
+        }
+
+        .footer-company,
+        .footer-legal {
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 18px;
+        }
+
+        .footer-legal {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            white-space: nowrap;
+        }
+
+        .footer-legal a:hover {
+            color: var(--primary);
+        }
+
+        /* =========================
+           TABLET
+        ========================= */
+
+        @media (max-width: 1000px) {
+            .auth-form-panel {
+                width: 58%;
+                padding: 50px 35px;
+            }
+
+            .auth-form-container {
+                gap: 48px;
+            }
+
+            .form-heading h1 {
+                font-size: 29px;
+            }
+
+            .illustration-placeholder {
+                max-width: 340px;
+            }
+
+            .supporting-guidance {
+                padding: 23px 40px;
+            }
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 700px) {
+            .auth-header {
+                height: 70px;
+                padding: 20px 24px;
+            }
+
+            .brand {
+                font-size: 22px;
+            }
+
+            .auth-main {
+                flex-direction: column;
+                min-height: auto;
+                overflow: visible;
+            }
+
+            .auth-form-panel {
+                width: 100%;
+                min-height: auto;
+                padding: 48px 24px;
+                border-radius: 0;
+            }
+
+            .auth-form-container {
+                max-width: 440px;
+                gap: 44px;
+            }
+
+            .form-heading h1 {
+                font-size: 29px;
+            }
+
+            .signup-form {
+                gap: 30px;
+            }
+
+            .auth-illustration {
+                min-height: 320px;
+                padding: 30px 20px;
+            }
+
+            .illustration-placeholder {
+                min-height: 260px;
+            }
+
+            .supporting-guidance {
+                min-height: auto;
+                padding: 20px 24px;
+            }
+
+            .password-hint {
+                align-items: flex-start;
+            }
+
+            .auth-footer {
+                padding: 22px 24px;
+            }
+        }
+
+        /* =========================
+           SMALL MOBILE
+        ========================= */
+
+        @media (max-width: 380px) {
+            .auth-header {
+                padding: 18px;
+            }
+
+            .auth-form-panel {
+                padding: 40px 20px;
+            }
+
+            .form-heading h1 {
+                font-size: 26px;
+            }
+
+            .terms-option span {
+                font-size: 13px;
+            }
+
+            .btn {
+                font-size: 13px;
+            }
+
+            .auth-footer {
+                padding: 20px;
+                flex-wrap: wrap;
+            }
+        }
+    
+/* Shared interaction polish */
+:where(a,button,input,select,textarea,[tabindex]):focus-visible{outline:3px solid #9bb8ff;outline-offset:2px}
+:where(button,[role="button"]):disabled{opacity:.55;cursor:not-allowed}
+:where(input,select,textarea):disabled{opacity:.65;cursor:not-allowed}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+</style>
+  <link rel="stylesheet" href="assets/css/design-system.css">
+  <script src="assets/js/app.js"></script>
+</head>
+
+<body>
+
+    <div class="auth-page">
+
+        <!-- HEADER -->
+
+        <header class="auth-header">
+
+            <a href="#" class="brand">ITGlow</a>
+
+            <a href="#" class="support-link">
+                Need help? ↗
+            </a>
+
+        </header>
+
+
+        <!-- MAIN CONTENT -->
+
+        <main class="auth-main">
+
+            <!-- LEFT: ACCOUNT CREATION FORM -->
+
+            <section class="auth-form-panel">
+
+                <div class="auth-form-container">
+
+                    <!-- HEADING -->
+
+                    <div class="form-heading">
+
+                        <h1>
+                            Create your account.<br>
+                            Build better relationships.
+                        </h1>
+
+                        <p>
+                            Step 1 of 3 · Your account details
+                        </p>
+
+                    </div>
+
+
+                    <!-- SIGN UP FORM -->
+
+                    <form class="signup-form" id="signupForm">
+
+                        <div class="form-fields">
+
+                            <!-- FULL NAME -->
+
+                            <div class="form-field">
+
+                                <label for="fullName">
+                                    Full name
+                                </label>
+
+                                <div class="field-control">
+
+                                    <input
+                                        type="text"
+                                        id="fullName"
+                                        name="fullName"
+                                        placeholder="Enter your full name"
+                                        autocomplete="name"
+                                        required
+                                    >
+
+                                    <!-- Add your full-name icon asset here manually -->
+
+                                    <span class="field-icon">
+                                        <!-- Full-name icon placeholder -->
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- EMAIL -->
+
+                            <div class="form-field">
+
+                                <label for="email">
+                                    Email
+                                </label>
+
+                                <div class="field-control">
+
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        name="email"
+                                        placeholder="Enter your email"
+                                        autocomplete="email"
+                                        required
+                                    >
+
+                                    <span class="email-suffix">@</span>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- PASSWORD -->
+
+                            <div class="form-field">
+
+                                <label for="password">
+                                    Password
+                                </label>
+
+                                <div class="field-control">
+
+                                    <input
+                                        type="password"
+                                        id="password"
+                                        name="password"
+                                        placeholder="Create a strong password"
+                                        autocomplete="new-password"
+                                        minlength="12"
+                                        required
+                                    >
+
+                                    <button
+                                        type="button"
+                                        class="password-toggle"
+                                        id="togglePassword"
+                                        aria-label="Show password"
+                                    >
+                                        Show
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- TERMS AND CONDITIONS -->
+
+                        <label class="terms-option">
+
+                            <input
+                                type="checkbox"
+                                id="terms"
+                                name="terms"
+                                required
+                            >
+
+                            <span>
+                                I agree to the
+                                <a href="legal-documents.html">terms &amp; conditions</a>
+                            </span>
+
+                        </label>
+
+
+                        <!-- SIGN UP / SIGN IN -->
+
+                        <div class="form-buttons">
+
+                            <button
+                                type="submit"
+                                class="btn btn-primary"
+                            >
+                                Sign Up
+                            </button>
+
+                            <button
+                                type="button"
+                                class="btn btn-secondary"
+                                id="signInButton"
+                            >
+                                Sign In
+                            </button>
+
+                        </div>
+
+                    </form>
+
+
+                    <!-- SOCIAL LOGIN -->
+
+                    <div class="social-login">
+
+                        <p>Or sign in with</p>
+
+                        <div class="social-buttons">
+
+                            <!-- Add Twitter asset manually -->
+                            <button
+                                type="button"
+                                class="social-button"
+                                aria-label="Continue with Twitter"
+                            >
+                                <!-- Twitter icon placeholder -->
+                            </button>
+
+                            <!-- Add Google asset manually -->
+                            <button
+                                type="button"
+                                class="social-button"
+                                aria-label="Continue with Google"
+                            >
+                                <!-- Google icon placeholder -->
+                            </button>
+
+                            <!-- Add Facebook asset manually -->
+                            <button
+                                type="button"
+                                class="social-button"
+                                aria-label="Continue with Facebook"
+                            >
+                                <!-- Facebook icon placeholder -->
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- RIGHT: ILLUSTRATION -->
+
+            <section
+                class="auth-illustration"
+                aria-label="Account creation illustration"
+            >
+
+                <!-- Background decorations -->
+
+                <div class="illustration-shape shape-one"></div>
+                <div class="illustration-shape shape-two"></div>
+                <div class="illustration-shape shape-three"></div>
+
+                <div class="illustration-placeholder">
+
+                    <!-- Add your illustration asset manually.
+
+                         Example:
+
+                         <img
+                             src="assets/sing_up.png"
+                             alt="Create your ITGlow account"
+                             class="main-illustration"
+                         >
+                    -->
+
+                </div>
+
+            </section>
+
+        </main>
+
+
+        <!-- PASSWORD GUIDANCE -->
+
+        <section class="supporting-guidance">
+
+            <div class="password-hint">
+
+                <!-- Add your information icon asset manually -->
+
+                <span class="hint-icon-placeholder">
+                    <!-- Information icon placeholder -->
+                </span>
+
+                <p>
+                    Use at least 12 characters with an uppercase letter,
+                    a lowercase letter and a number. Never reuse a password.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- FOOTER -->
+
+        <footer class="auth-footer">
+
+            <p class="footer-company">
+                ITGlow Technology
+            </p>
+
+            <nav class="footer-legal" aria-label="Legal links">
+
+                <a href="legal-documents.html">Privacy</a>
+
+                <span>·</span>
+
+                <a href="legal-documents.html">Terms</a>
+
+            </nav>
+
+        </footer>
+
+    </div>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+        // Show or hide password
+
+        const passwordInput = document.getElementById("password");
+        const togglePassword = document.getElementById("togglePassword");
+
+        togglePassword.addEventListener("click", function () {
+            const isHidden = passwordInput.type === "password";
+
+            passwordInput.type = isHidden ? "text" : "password";
+            togglePassword.textContent = isHidden ? "Hide" : "Show";
+
+            togglePassword.setAttribute(
+                "aria-label",
+                isHidden ? "Hide password" : "Show password"
+            );
+        });
+
+
+        // Password validation
+
+        passwordInput.addEventListener("input", function () {
+            const password = passwordInput.value;
+
+            const hasUppercase = /[A-Z]/.test(password);
+            const hasLowercase = /[a-z]/.test(password);
+            const hasNumber = /[0-9]/.test(password);
+
+            passwordInput.setCustomValidity(
+                password.length >= 12 &&
+                hasUppercase &&
+                hasLowercase &&
+                hasNumber
+                    ? ""
+                    : "Use at least 12 characters with an uppercase letter, lowercase letter and number."
+            );
+        });
+
+
+        const signupForm = document.getElementById("signupForm");
+        const signupButton = signupForm.querySelector('[type="submit"]');
+        const signupMessage = document.createElement("p");
+        signupMessage.setAttribute("role", "alert");
+        signupMessage.setAttribute("aria-live", "polite");
+        signupForm.prepend(signupMessage);
+        signupForm.addEventListener("submit", async function (event) {
+            event.preventDefault();
+            signupMessage.textContent = "";
+            window.ITGlowUI.setBusy(signupButton, true, "Creating account…");
+            try {
+                await window.ITGlowAPI.register({
+                    fullName: document.getElementById("fullName").value.trim(),
+                    email: document.getElementById("email").value.trim(),
+                    password: passwordInput.value
+                });
+                window.location.assign("company_details.html");
+            } catch (error) {
+                signupMessage.textContent = error instanceof Error ? error.message : "Unable to create account.";
+                window.ITGlowUI.setBusy(signupButton, false);
+            }
+        });
+
+
+        // Navigate to the sign-in page
+
+        document.getElementById("signInButton").addEventListener(
+            "click",
+            function () {
+                window.location.href = "sign-in.html";
+            }
+        );
+    </script>
+
+</body>
+</html>

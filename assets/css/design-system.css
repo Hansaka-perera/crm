@@ -1,0 +1,918 @@
+/* ITGlow CRM shared design system. Loaded after each page's existing styles. */
+:root {
+  --itg-primary: #0d59fc;
+  --itg-primary-hover: #084bd6;
+  --itg-primary-soft: #edf2ff;
+  --itg-page: #f6f8fc;
+  --itg-surface: #ffffff;
+  --itg-ink: #202126;
+  --itg-muted: #68748a;
+  --itg-border: #e2e8f1;
+  --itg-success: #19845b;
+  --itg-danger: #c84545;
+  --itg-radius-sm: 8px;
+  --itg-radius: 12px;
+  --itg-radius-lg: 16px;
+  --itg-sidebar-width: 232px;
+  --itg-topbar-height: 64px;
+  --itg-content-max: 1560px;
+  --itg-motion-fast: 150ms;
+  --itg-motion-base: 220ms;
+  --itg-motion-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+  text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* CRM application shell: the same sidebar, header and content scale on every route. */
+.app {
+  display: flex;
+  min-height: 100vh;
+  background: var(--itg-page);
+  color: var(--itg-ink);
+  font-family: Inter, "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  isolation: isolate;
+}
+
+.app,
+.app * {
+  box-sizing: border-box;
+}
+
+.app .sidebar {
+  box-sizing: border-box;
+  width: var(--itg-sidebar-width);
+  min-width: 0;
+  min-height: 100vh;
+  height: 100vh;
+  flex: 0 0 var(--itg-sidebar-width);
+  position: sticky;
+  top: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 22px 16px;
+  gap: 22px;
+  border: 0;
+  border-right: 1px solid var(--itg-border);
+  background: var(--itg-surface);
+  scrollbar-width: thin;
+  scrollbar-color: #cad4e4 transparent;
+}
+
+.app .brand {
+  flex: 0 0 auto;
+  color: var(--itg-primary);
+  text-decoration: none;
+  letter-spacing: -0.6px;
+}
+
+.app .workspace-name {
+  color: var(--itg-ink);
+  line-height: 1.35;
+}
+
+.app .nav {
+  min-width: 0;
+  gap: 4px;
+}
+
+.app .nav a {
+  box-sizing: border-box;
+  min-width: 0;
+  min-height: 40px;
+  height: auto;
+  border-radius: var(--itg-radius-sm);
+  padding: 9px 11px;
+  color: var(--itg-muted);
+  transition: background-color var(--itg-motion-fast) ease, color var(--itg-motion-fast) ease,
+    transform var(--itg-motion-fast) ease;
+}
+
+.app .nav a:hover {
+  background: #f4f7fc;
+  color: var(--itg-ink);
+}
+
+.app .nav a.active,
+.app .nav a[aria-current="page"] {
+  color: var(--itg-primary);
+  background: var(--itg-primary-soft);
+}
+
+.app .workspace-card {
+  border-color: var(--itg-border);
+  border-radius: var(--itg-radius);
+  box-shadow: 0 1px 2px rgb(21 41 82 / 3%);
+}
+
+.app .main {
+  display: flex;
+  min-width: 0;
+  min-height: 100vh;
+  flex: 1 1 auto;
+  flex-direction: column;
+  background: var(--itg-page);
+}
+
+.app .topbar {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: var(--itg-topbar-height);
+  height: var(--itg-topbar-height);
+  flex: 0 0 var(--itg-topbar-height);
+  padding-inline: clamp(18px, 2.4vw, 36px);
+  gap: 18px;
+  border: 0;
+  border-bottom: 1px solid var(--itg-border);
+  background: var(--itg-surface);
+}
+
+.app .content {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: var(--itg-content-max);
+  min-width: 0;
+  margin-inline: auto;
+  padding: clamp(22px, 2.5vw, 36px) clamp(16px, 2.4vw, 36px) 40px;
+}
+
+.app .heading {
+  flex-wrap: wrap;
+}
+
+.app .heading h1,
+.app .content > h1 {
+  color: var(--itg-ink);
+  font-size: clamp(24px, 2vw, 30px);
+  font-weight: 750;
+  line-height: 1.2;
+  letter-spacing: -0.6px;
+  overflow-wrap: anywhere;
+}
+
+.app :is(.metric, .panel, .workspace-card, .member, .security-item, .table-wrap, .table-card) {
+  border-color: var(--itg-border);
+}
+
+.app :is(.metric, .panel, .table-wrap, .table-card) {
+  border-radius: var(--itg-radius);
+}
+
+.app :is(button, input, select, textarea) {
+  max-width: 100%;
+}
+
+.app button,
+.auth-page button,
+.auth-page a,
+.app a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.app :is(button, .btn, .filter, [role="button"]) {
+  transition: color var(--itg-motion-fast) ease, background-color var(--itg-motion-fast) ease,
+    border-color var(--itg-motion-fast) ease, box-shadow var(--itg-motion-fast) ease,
+    transform var(--itg-motion-fast) ease, opacity var(--itg-motion-fast) ease;
+}
+
+.app :is(button, .btn, .filter, [role="button"]):hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.app :is(button, .btn, .filter, [role="button"]):active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.app :is(button, .btn, .filter, [role="button"]):disabled {
+  cursor: not-allowed;
+  opacity: 0.58;
+  transform: none;
+}
+
+.app :is(input, select, textarea) {
+  min-width: 0;
+  transition: border-color var(--itg-motion-fast) ease, box-shadow var(--itg-motion-fast) ease;
+}
+
+:where(.app, .auth-page) :where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 3px solid #9bb8ff;
+  outline-offset: 2px;
+}
+
+.app :is(img, svg, canvas, video) {
+  max-width: 100%;
+}
+
+.app img {
+  height: auto;
+}
+
+.app :is(.toast, .itglow-toast) {
+  z-index: 1000;
+}
+
+/* Dialogs animate only when shown, avoiding page-load popups and layout jumps. */
+.app .modal-backdrop,
+.app .modal-bg,
+.app .modal-overlay {
+  overscroll-behavior: contain;
+}
+
+.app :is(.modal-backdrop.show .modal, .modal-bg.show .modal, .modal-overlay.show .modal) {
+  animation: itglow-modal-in 180ms var(--itg-motion-ease) both;
+}
+
+.app .nav a:focus-visible {
+  outline-offset: -2px;
+}
+
+/* Shared auth sizing without flattening each existing authentication layout. */
+.auth-page {
+  min-height: 100vh !important;
+}
+
+.auth-page :is(input, select, textarea, button) {
+  max-width: 100%;
+}
+
+.auth-page :is(button, a) {
+  transition: color var(--itg-motion-fast) ease, background-color var(--itg-motion-fast) ease,
+    border-color var(--itg-motion-fast) ease, box-shadow var(--itg-motion-fast) ease,
+    transform var(--itg-motion-fast) ease;
+}
+
+.auth-page :is(button, a):active {
+  transform: translateY(0);
+}
+
+/* Shared TypeScript toast: visually consistent and announced to assistive technology. */
+.itglow-toast {
+  position: fixed;
+  z-index: 1100;
+  right: max(16px, env(safe-area-inset-right));
+  bottom: max(16px, env(safe-area-inset-bottom));
+  width: max-content;
+  max-width: min(420px, calc(100vw - 32px));
+  padding: 12px 16px;
+  border: 1px solid rgb(255 255 255 / 12%);
+  border-radius: 12px;
+  background: #202936;
+  box-shadow: 0 12px 34px rgb(23 39 68 / 20%);
+  color: #fff;
+  font: 600 13px/1.45 Inter, Lato, system-ui, sans-serif;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px);
+  transition: opacity 180ms ease, transform 180ms var(--itg-motion-ease);
+}
+
+.itglow-toast[data-kind="success"] {
+  background: #17674a;
+}
+
+.itglow-toast[data-kind="error"] {
+  background: #8d3030;
+}
+
+.itglow-toast.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes itglow-modal-in {
+  from { opacity: 0; transform: translateY(7px) scale(0.99); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes itglow-enter {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+body.itglow-ui-ready .app .main > .content {
+  animation: itglow-enter 240ms var(--itg-motion-ease) both;
+}
+
+@media (max-width: 1080px) and (min-width: 821px) {
+  :root { --itg-sidebar-width: 216px; }
+  .app .sidebar { padding-inline: 13px; }
+  .app .content { padding-inline: 22px; }
+}
+
+@media (max-width: 820px) {
+  .app {
+    display: block;
+    min-height: 100vh;
+  }
+
+  .app .sidebar {
+    position: relative;
+    top: auto;
+    width: 100%;
+    min-height: 0;
+    height: auto;
+    flex: none;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    gap: 12px 18px;
+    padding: 14px 18px 10px;
+    overflow: hidden;
+    border-right: 0;
+    border-bottom: 1px solid var(--itg-border);
+  }
+
+  .app .sidebar > .brand { grid-column: 1; grid-row: 1; }
+  .app .sidebar > .nav {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+    width: 100%;
+    min-width: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 1px 0 4px;
+    scrollbar-width: thin;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .app .nav a {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+
+  .app .sidebar > .workspace-meta,
+  .app .sidebar > .workspace-card,
+  .app .sidebar > .help {
+    display: none;
+  }
+
+  .app .main { min-height: 0; }
+  .app .topbar {
+    min-height: 58px;
+    height: auto;
+    flex-basis: auto;
+    padding: 10px 18px;
+    flex-wrap: wrap;
+  }
+  .app .content { padding: 22px 18px 32px; }
+  .app .heading { align-items: flex-start; }
+  .app :is(.metrics, .stats-grid) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .app :is(.twocol, .two-col, .content-grid) { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (max-width: 520px) {
+  .app .sidebar { padding: 12px 12px 8px; }
+  .app .main .topbar { padding: 10px 14px; gap: 10px; }
+  .app .main .content { padding: 18px 14px 28px; }
+  .app .heading { gap: 12px; }
+  .app .heading h1,
+  .app .content > h1 { font-size: 24px; }
+  .app :is(.metrics, .stats-grid, .owners, .team-cards) { grid-template-columns: minmax(0, 1fr); }
+  .app :is(.filters, .toolbar, .actions, .invite-actions) { flex-wrap: wrap; }
+  .app :is(.panel, .metric) { min-width: 0; }
+  .app table { min-width: 560px; }
+  .app :is(.table-wrap, .table-container, .table-responsive) {
+    max-width: 100%;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+  }
+  .itglow-toast { right: 12px; bottom: 12px; max-width: calc(100vw - 24px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media print {
+  .app .sidebar,
+  .app .topbar,
+  .itglow-toast { display: none !important; }
+  .app { display: block; background: white; }
+  .app .main { width: 100%; background: white; }
+  .app .content { max-width: none; padding: 0; }
+  .app .panel,
+  .app .metric { break-inside: avoid; }
+}
+
+/* Compatibility layer for the Leads route's original app-shell naming.
+   It shares the same tokens and page scale without changing Leads-specific UI. */
+.app-shell {
+  display: flex;
+  min-height: 100vh;
+  background: var(--itg-page);
+  color: var(--itg-ink);
+  font-family: Inter, "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  isolation: isolate;
+}
+
+.app-shell,
+.app-shell * { box-sizing: border-box; }
+
+.app-shell .sidebar {
+  width: var(--itg-sidebar-width);
+  min-width: 0;
+  min-height: 100vh;
+  height: 100vh;
+  flex: 0 0 var(--itg-sidebar-width);
+  position: sticky;
+  top: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 22px 16px;
+  gap: 22px;
+  border: 0;
+  border-right: 1px solid var(--itg-border);
+  background: var(--itg-surface);
+  scrollbar-width: thin;
+  scrollbar-color: #cad4e4 transparent;
+}
+
+.app-shell .brand {
+  flex: 0 0 auto;
+  color: var(--itg-primary);
+  font-size: 25px;
+  text-decoration: none;
+  letter-spacing: -0.6px;
+}
+
+.app-shell .workspace-name { color: var(--itg-ink); line-height: 1.35; }
+.app-shell .main-nav { min-width: 0; gap: 4px; }
+
+.app-shell .nav-item {
+  box-sizing: border-box;
+  min-width: 0;
+  min-height: 40px;
+  height: auto;
+  border-radius: var(--itg-radius-sm);
+  padding: 9px 11px;
+  color: var(--itg-muted);
+  transition: background-color var(--itg-motion-fast) ease, color var(--itg-motion-fast) ease,
+    transform var(--itg-motion-fast) ease;
+}
+
+.app-shell .nav-item:hover { background: #f4f7fc; color: var(--itg-ink); }
+.app-shell .nav-item.active,
+.app-shell .nav-item[aria-current="page"] { color: var(--itg-primary); background: var(--itg-primary-soft); }
+.app-shell .nav-icon { width: 18px; flex: 0 0 18px; font-size: 17px; }
+.app-shell .workspace-card { border-color: var(--itg-border); border-radius: var(--itg-radius); box-shadow: 0 1px 2px rgb(21 41 82 / 3%); }
+
+.app-shell .main-content {
+  display: flex;
+  min-width: 0;
+  min-height: 100vh;
+  flex: 1 1 auto;
+  flex-direction: column;
+  background: var(--itg-page);
+}
+
+.app-shell .topbar {
+  width: 100%;
+  min-height: var(--itg-topbar-height);
+  height: var(--itg-topbar-height);
+  flex: 0 0 var(--itg-topbar-height);
+  padding-inline: clamp(18px, 2.4vw, 36px);
+  gap: 18px;
+  border: 0;
+  border-bottom: 1px solid var(--itg-border);
+  background: var(--itg-surface);
+}
+
+.app-shell .page-content {
+  width: 100%;
+  max-width: var(--itg-content-max);
+  min-width: 0;
+  margin-inline: auto;
+  padding: clamp(22px, 2.5vw, 36px) clamp(16px, 2.4vw, 36px) 40px;
+}
+
+.app-shell .page-heading { flex-wrap: wrap; }
+.app-shell .page-heading h1 {
+  color: var(--itg-ink);
+  font-size: clamp(24px, 2vw, 30px);
+  font-weight: 750;
+  line-height: 1.2;
+  letter-spacing: -0.6px;
+  overflow-wrap: anywhere;
+}
+
+.app-shell :is(.panel, .qualification-guide, .lead-record, .modal) { border-color: var(--itg-border); }
+.app-shell :is(.panel, .qualification-guide) { border-radius: var(--itg-radius); }
+.app-shell :is(button, input, select, textarea) { max-width: 100%; }
+.app-shell :is(button, .primary-button, .soft-button, [role="button"]) {
+  transition: color var(--itg-motion-fast) ease, background-color var(--itg-motion-fast) ease,
+    border-color var(--itg-motion-fast) ease, box-shadow var(--itg-motion-fast) ease,
+    transform var(--itg-motion-fast) ease;
+}
+.app-shell :is(button, .primary-button, .soft-button, [role="button"]):hover:not(:disabled) { transform: translateY(-1px); }
+.app-shell :is(button, .primary-button, .soft-button, [role="button"]):active:not(:disabled) { transform: translateY(0); }
+.app-shell :is(button, .primary-button, .soft-button):disabled { cursor: not-allowed; opacity: 0.58; transform: none; }
+.app-shell :is(input, select, textarea) { min-width: 0; }
+.app-shell :is(img, svg, canvas, video) { max-width: 100%; }
+
+body.itglow-ui-ready .app-shell .main-content > .page-content {
+  animation: itglow-enter 240ms var(--itg-motion-ease) both;
+}
+
+@media (max-width: 1080px) and (min-width: 821px) {
+  .app-shell .sidebar { padding-inline: 13px; }
+  .app-shell .page-content { padding-inline: 22px; }
+}
+
+@media (max-width: 820px) {
+  .app-shell { display: block; min-height: 100vh; }
+  .app-shell .sidebar {
+    position: relative;
+    top: auto;
+    width: 100%;
+    min-height: 0;
+    height: auto;
+    flex: none;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    gap: 12px 18px;
+    padding: 14px 18px 10px;
+    overflow: hidden;
+    border-right: 0;
+    border-bottom: 1px solid var(--itg-border);
+  }
+  .app-shell .sidebar > .brand { grid-column: 1; grid-row: 1; }
+  .app-shell .sidebar > .main-nav {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+    width: 100%;
+    min-width: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 1px 0 4px;
+    scrollbar-width: thin;
+    -webkit-overflow-scrolling: touch;
+  }
+  .app-shell .nav-item { flex: 0 0 auto; white-space: nowrap; }
+  .app-shell .sidebar > .workspace-name,
+  .app-shell .sidebar > .workspace-card,
+  .app-shell .sidebar > .help-link { display: none; }
+  .app-shell .main-content { min-height: 0; }
+  .app-shell .topbar {
+    min-height: 58px;
+    height: auto;
+    flex-basis: auto;
+    padding: 10px 18px;
+    flex-wrap: wrap;
+  }
+  .app-shell .page-content { padding: 22px 18px 32px; }
+  .app-shell .page-heading { align-items: flex-start; }
+}
+
+@media (max-width: 520px) {
+  .app-shell .sidebar { padding: 12px 12px 8px; }
+  .app-shell .brand { font-size: 22px; }
+  .app-shell .main-content .topbar { padding: 10px 14px; gap: 10px; }
+  .app-shell .main-content .page-content { padding: 18px 14px 28px; }
+  .app-shell .page-heading { gap: 12px; }
+  .app-shell .page-heading h1 { font-size: 24px; }
+  .app-shell .toolbar { flex-wrap: wrap; }
+  .app-shell .lead-layout { grid-template-columns: minmax(0, 1fr); }
+  .app-shell .detail-panel { grid-row: 1; }
+  .app-shell .search-leads { width: 100%; }
+}
+
+@media print {
+  .app-shell .sidebar,
+  .app-shell .topbar { display: none !important; }
+  .app-shell { display: block; background: #fff; }
+  .app-shell .main-content { width: 100%; background: #fff; }
+  .app-shell .page-content { max-width: none; padding: 0; }
+  .app-shell .panel { break-inside: avoid; }
+}
+
+/* Canonical sidebar component. All CRM pages mount this same TypeScript-rendered UI. */
+.itg-sidebar {
+  box-sizing: border-box;
+  width: var(--itg-sidebar-width);
+  min-width: 0;
+  min-height: 100vh;
+  height: 100vh;
+  flex: 0 0 var(--itg-sidebar-width);
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 22px 16px;
+  border: 0;
+  border-right: 1px solid var(--itg-border);
+  background: var(--itg-surface);
+  color: var(--itg-ink);
+  /* Keep navigation typography identical even when a page loads a different web font. */
+  font-family: Arial, "Segoe UI", sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  scrollbar-width: thin;
+  scrollbar-color: #cad4e4 transparent;
+}
+
+.itg-sidebar,
+.itg-sidebar * { box-sizing: border-box; }
+
+.itg-sidebar__brand {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  flex: 0 0 auto;
+  color: var(--itg-primary);
+  font-size: 25px;
+  font-family: Arial, "Segoe UI", sans-serif;
+  font-weight: 800;
+  line-height: 30px;
+  letter-spacing: -0.6px;
+  text-decoration: none;
+}
+
+.itg-sidebar__workspace-meta { display: grid; gap: 4px; min-width: 0; }
+.itg-sidebar__workspace-name {
+  color: var(--itg-ink);
+  font-size: 14px;
+  font-family: Arial, "Segoe UI", sans-serif;
+  font-weight: 750;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+.itg-sidebar__company { color: var(--itg-muted); font-size: 12px; line-height: 1.5; }
+
+.itg-sidebar__nav {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.itg-sidebar__link {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  min-height: 40px;
+  padding: 9px 11px;
+  border-radius: var(--itg-radius-sm);
+  background: transparent;
+  color: var(--itg-muted);
+  font-size: 13px;
+  font-family: Arial, "Segoe UI", sans-serif;
+  font-weight: 700;
+  line-height: 1.4;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color var(--itg-motion-fast) ease, color var(--itg-motion-fast) ease,
+    transform var(--itg-motion-fast) ease;
+}
+
+.itg-sidebar__link svg {
+  display: block;
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.itg-sidebar__link:hover { background: #f4f7fc; color: var(--itg-ink); }
+.itg-sidebar__link:focus-visible { outline: 3px solid #9bb8ff; outline-offset: 2px; }
+.itg-sidebar__link.active,
+.itg-sidebar__link[aria-current="page"] { background: var(--itg-primary-soft); color: var(--itg-primary); }
+.itg-sidebar__link:active { transform: translateY(1px); }
+
+.itg-sidebar__workspace-card {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 13px;
+  min-width: 0;
+  margin-top: 2px;
+  padding: 18px;
+  border: 1px solid var(--itg-border);
+  border-radius: var(--itg-radius);
+  background: var(--itg-surface);
+  box-shadow: 0 1px 2px rgb(21 41 82 / 3%);
+}
+
+.itg-sidebar__workspace-card h2 {
+  margin: 0;
+  color: var(--itg-ink);
+  font-size: 18px;
+  font-weight: 750;
+  line-height: 1.3;
+}
+.itg-sidebar__workspace-card p { margin: 0; color: var(--itg-muted); font-size: 12px; line-height: 1.5; }
+.itg-sidebar__sample {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 26px;
+  max-width: 100%;
+  padding: 5px 10px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--itg-primary-soft);
+  color: var(--itg-primary);
+  font: inherit;
+  font-size: 11px;
+  font-weight: 750;
+  line-height: 1.2;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color var(--itg-motion-fast) ease, transform var(--itg-motion-fast) ease;
+}
+.itg-sidebar__sample:hover { background: #dfe8ff; }
+.itg-sidebar__sample:active { transform: translateY(1px); }
+.itg-sidebar__sample:focus-visible { outline: 3px solid #9bb8ff; outline-offset: 2px; }
+
+.itg-sidebar__help {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  min-height: 24px;
+  margin-top: auto;
+  color: var(--itg-muted);
+  font-size: 12px;
+  line-height: 1.5;
+  text-decoration: none;
+}
+.itg-sidebar__help:hover { color: var(--itg-primary); }
+.itg-sidebar__help:focus-visible { outline: 3px solid #9bb8ff; outline-offset: 2px; }
+
+/* One topbar component shared by every CRM route. */
+.itg-topbar {
+  position: sticky;
+  z-index: 4;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  width: 100%;
+  min-width: 0;
+  min-height: var(--itg-topbar-height);
+  padding: 0 26px;
+  border: 0;
+  border-bottom: 1px solid var(--itg-border);
+  background: rgb(255 255 255 / 96%);
+  color: var(--itg-ink);
+  backdrop-filter: blur(12px);
+}
+.itg-topbar__breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  color: var(--itg-muted);
+  font-size: 12px;
+  white-space: nowrap;
+}
+.itg-topbar__breadcrumb a { color: inherit; text-decoration: none; }
+.itg-topbar__breadcrumb a:hover { color: var(--itg-primary); }
+.itg-topbar__breadcrumb span:last-child { color: var(--itg-ink); font-weight: 750; }
+.itg-topbar__search {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  width: min(300px, 34vw);
+  min-width: 130px;
+  height: 38px;
+  padding: 0 12px;
+  border: 1px solid transparent;
+  border-radius: var(--itg-radius-sm);
+  background: var(--itg-page);
+  color: var(--itg-muted);
+}
+.itg-topbar__search:focus-within { border-color: #b6c9ff; box-shadow: 0 0 0 3px var(--itg-primary-soft); }
+.itg-topbar__search svg { width: 17px; height: 17px; flex: 0 0 auto; stroke: currentColor; fill: none; stroke-width: 1.8; }
+.itg-topbar__search input { width: 100%; min-width: 0; padding: 0; border: 0; outline: 0; background: transparent; color: var(--itg-ink); font: inherit; font-size: 12px; }
+.itg-topbar__actions { display: flex; align-items: center; gap: 17px; }
+.itg-topbar__icon { display: grid; width: 34px; height: 34px; place-items: center; padding: 7px; border: 0; border-radius: 8px; background: transparent; color: var(--itg-muted); cursor: pointer; }
+.itg-topbar__icon:hover { background: var(--itg-page); color: var(--itg-primary); }
+.itg-topbar__icon svg { width: 19px; height: 19px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.itg-topbar__avatar { display: grid; width: 32px; height: 32px; place-items: center; padding: 0; border: 0; border-radius: 50%; background: var(--itg-primary-soft); color: var(--itg-primary); font: inherit; font-size: 11px; font-weight: 800; cursor: pointer; }
+.itg-topbar :is(button, input):focus-visible { outline: 3px solid #9bb8ff; outline-offset: 2px; }
+
+.itg-sidebar__secondary { display: grid; gap: 3px; margin: -12px 0 0 10px; padding: 7px 0 0 10px; border-left: 1px solid var(--itg-border); }
+.itg-sidebar__secondary-link { min-height: 32px; padding: 7px 9px; border-radius: 7px; color: var(--itg-muted); font-size: 12px; font-weight: 650; text-decoration: none; }
+.itg-sidebar__secondary-link:hover { background: #f4f7fc; color: var(--itg-primary); }
+.itg-sidebar__secondary-link.is-active { background: var(--itg-primary-soft); color: var(--itg-primary); font-weight: 750; }
+
+/* Keep the requested bold hierarchy consistent while retaining page scales. */
+:is(.app, .app-shell) :is(.heading h1, .page-heading h1) { font-weight: 800; }
+.app .stage { border: 1px solid var(--itg-border); background: #f1f5fc; }
+.app .stage-head { color: var(--itg-ink); font-size: 13px; font-weight: 800; }
+.app .deal-title { color: var(--itg-ink); font-size: 13px; font-weight: 800; }
+
+@media (max-width: 1080px) and (min-width: 821px) {
+  :root { --itg-sidebar-width: 216px; }
+  .itg-sidebar { padding-inline: 13px; }
+}
+
+@media (max-width: 820px) {
+  .itg-topbar { position: relative; min-height: 60px; padding-inline: 18px; }
+  .itg-topbar__search { width: min(280px, 42vw); }
+  .itg-sidebar {
+    position: relative;
+    top: auto;
+    width: 100%;
+    min-height: 0;
+    height: auto;
+    flex: none;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    gap: 12px 18px;
+    padding: 14px 18px 10px;
+    overflow: hidden;
+    border-right: 0;
+    border-bottom: 1px solid var(--itg-border);
+  }
+  .itg-sidebar__brand { grid-column: 1; grid-row: 1; }
+  .itg-sidebar__nav {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+    width: 100%;
+    min-width: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 1px 0 4px;
+    scrollbar-width: thin;
+    -webkit-overflow-scrolling: touch;
+  }
+  .itg-sidebar__link { flex: 0 0 auto; width: auto; }
+  .itg-sidebar__workspace-meta,
+  .itg-sidebar__workspace-card,
+  .itg-sidebar__help { display: none; }
+}
+
+@media (max-width: 520px) {
+  .itg-topbar { flex-wrap: wrap; gap: 10px; padding: 10px 12px; }
+  .itg-topbar__breadcrumb { flex: 1 1 auto; }
+  .itg-topbar__search { order: 3; width: 100%; }
+  .itg-topbar__actions { gap: 8px; }
+  .itg-sidebar__secondary { grid-column: 1 / -1; grid-row: 3; display: flex; margin: -3px 0 0; padding: 0; border: 0; overflow-x: auto; }
+  .itg-sidebar { padding: 12px 12px 8px; }
+  .itg-sidebar__brand { font-size: 22px; }
+  .itg-sidebar__nav { gap: 4px; }
+  .itg-sidebar__link { min-height: 38px; padding: 8px 10px; font-size: 12px; }
+}
+
+@media print {
+  .itg-sidebar { display: none !important; }
+}
+
+/* Contacts data table: consistent density, readable hierarchy, and safe overflow. */
+.app .table-panel { padding: 0; border-radius: 14px; box-shadow: 0 2px 8px rgb(16 24 40 / 3%); }
+.app .table-panel .table-wrap { overflow-x: auto; overscroll-behavior-inline: contain; border-radius: 14px 14px 0 0; }
+.app .table-panel table { margin: 0; }
+.app .table-panel .pagination { padding: 14px 16px; margin: 0; border-top: 1px solid var(--itg-border); background: #fff; }
+.app .table-panel .pagination .secondary { min-height: 34px; height: 34px; border: 1px solid var(--itg-border); background: #fff; color: #344054; border-radius: 8px; font-size: 12px; }
+.app .table-panel .pagination .secondary:not(:disabled):hover { border-color: #b9caff; background: #f7f9ff; color: var(--itg-primary); }
+.app .table-panel .pagination .secondary:disabled { background: #f8fafc; }
+.app .table-panel .empty { padding: 30px 16px; font-size: 13px; }
+@media (max-width: 520px) {
+  .app .table-panel { padding: 0; }
+  .app .table-panel .pagination { flex-wrap: wrap; padding: 12px; }
+  .app .table-panel .pagination .summary { flex: 1 0 100%; }
+}

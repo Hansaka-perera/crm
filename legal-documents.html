@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ITGlow · Legal documents</title>
+<style>
+:root{--blue:#105bff;--ink:#222936;--muted:#6e7b91;--line:#e2e8f1;--bg:#f5f8fc}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:var(--bg);font:15px/1.6 Lato,Arial,sans-serif;color:var(--ink);display:grid;place-items:center;padding:24px}
+main{width:min(620px,100%);background:#fff;border:1px solid var(--line);border-radius:14px;padding:clamp(22px,5vw,40px);box-shadow:0 12px 36px #1720330a}
+.brand{font-size:24px;font-weight:800;color:var(--blue);text-decoration:none}h1{font-size:25px;margin:25px 0 10px}p{color:var(--muted)}.note{border:1px solid var(--line);border-radius:8px;padding:14px;background:#fafcff}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}a.button{display:inline-block;text-decoration:none;border-radius:7px;padding:10px 14px;font-weight:700;font-size:13px;background:var(--blue);color:#fff}a.secondary{background:#edf2ff;color:var(--blue)}a:focus-visible{outline:3px solid #8baeff;outline-offset:3px}
+
+/* Shared interaction polish */
+:where(a,button,input,select,textarea,[tabindex]):focus-visible{outline:3px solid #9bb8ff;outline-offset:2px}
+:where(button,[role="button"]):disabled{opacity:.55;cursor:not-allowed}
+:where(input,select,textarea):disabled{opacity:.65;cursor:not-allowed}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+</style>  <link rel="stylesheet" href="assets/css/design-system.css">
+  <script src="assets/js/app.js"></script>
+</head>
+<body><main>
+<a class="brand" href="sign-in.html">ITGlow</a>
+<h1>Privacy &amp; terms information</h1>
+<div class="note"><strong>Policy documents were not included in this project package.</strong><p>This page intentionally does not invent or represent a published privacy policy or terms of service. Please request the current approved documents from ITGlow before relying on either policy.</p></div>
+<div class="actions"><a class="button" href="mailto:support@itglow.com?subject=Request%20for%20ITGlow%20legal%20documents">Request documents</a><a class="button secondary" href="sign-in.html">Back to sign in</a></div>
+</main></body></html>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Setup guide | ITGlow CRM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--blue:#0D59FC;--ink:#1C1D21;--muted:#68748A;--line:#E4E9F2;--bg:#F6F8FC;--pale:#EDF2FF;--white:#fff}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Lato,Arial,sans-serif;font-size:14px;-webkit-font-smoothing:antialiased}
+button,input{font:inherit}
+button{cursor:pointer}
+.app{min-height:100vh;display:flex}
+.sidebar{width:206px;flex:0 0 206px;background:#fff;border:1px solid var(--line);padding:18px;display:flex;flex-direction:column;gap:27px;min-height:100vh}
+.brand{font-size:25px;font-weight:800;letter-spacing:-.6px;color:var(--blue);text-decoration:none;line-height:30px}
+.workspace-name{font-weight:700;margin-bottom:6px}
+.workspace-company{font-size:12px;color:var(--muted)}
+.nav{display:flex;flex-direction:column;gap:6px}
+.nav-item{display:flex;align-items:center;gap:12px;height:44px;padding:0 12px;border-radius:8px;color:var(--muted);font-weight:700;text-decoration:none}
+.nav-item svg{width:18px;height:18px;flex:0 0 18px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.nav-item.active{color:var(--blue);background:var(--pale)}
+.nav-item:hover{background:#F6F8FC}
+.workspace-card{border:1px solid var(--line);border-radius:12px;padding:22px;display:flex;flex-direction:column;align-items:flex-start;gap:18px}
+.workspace-card h2{font-size:20px;line-height:1.3;margin:0}
+.workspace-card p{font-size:12px;line-height:18px;color:var(--muted);margin:0}
+.pill{display:inline-flex;align-items:center;padding:4px 9px;border-radius:24px;background:var(--pale);color:var(--blue);font-size:12px;line-height:14px;font-weight:700;white-space:nowrap}
+.support-link{font-size:12px;color:var(--muted);text-decoration:none;margin-top:2px}
+.main{min-width:0;flex:1;display:flex;flex-direction:column}
+.topbar{height:73px;background:#fff;border:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:22px;padding:0 30px}
+.breadcrumb{color:var(--muted);white-space:nowrap}
+.search{width:288px;height:40px;border-radius:8px;background:var(--bg);display:flex;align-items:center;gap:10px;padding:0 12px;color:var(--muted)}
+.search svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.8}
+.search input{border:0;outline:0;background:transparent;min-width:0;width:100%;color:var(--ink);font-size:13px}
+.top-actions{display:flex;align-items:center;gap:18px}
+.icon-button{display:grid;place-items:center;border:0;background:transparent;color:var(--muted);padding:4px}
+.icon-button svg{width:19px;height:19px;stroke:currentColor;fill:none;stroke-width:1.8}
+.avatar{width:32px;height:32px;border-radius:50%;background:var(--pale);color:var(--blue);font-size:12px;font-weight:700;border:0}
+.content{padding:32px;display:flex;flex-direction:column;gap:22px;max-width:1500px;width:100%;margin:0 auto}
+.page-heading{display:flex;align-items:center;justify-content:space-between;gap:18px}
+.page-heading h1{font-size:32px;line-height:42px;margin:0 0 4px;color:#000;letter-spacing:-.5px}
+.page-heading p{margin:0;color:var(--muted);font-size:14px;line-height:21px}
+.primary{border:0;background:var(--blue);color:#fff;font-weight:700;border-radius:8px;min-height:42px;padding:0 24px}
+.primary:hover{background:#084bd9}
+.notice{display:flex;align-items:center;gap:10px;min-height:46px;padding:12px 14px;background:var(--pale);border-radius:8px;font-size:13px;line-height:20px}
+.notice svg{width:18px;height:18px;flex:0 0 18px;stroke:var(--blue);fill:none;stroke-width:2}
+.metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.metric{min-width:0;background:#fff;border:1px solid var(--line);border-radius:12px;padding:17px 16px;display:flex;flex-direction:column;gap:8px}
+.metric-label,.metric-note{font-size:12px;line-height:18px;color:var(--muted)}
+.metric-value{font-size:28px;line-height:34px;font-weight:700;letter-spacing:-.4px}
+.columns{display:grid;grid-template-columns:minmax(0,2.15fr) minmax(280px,1fr);gap:22px;align-items:start}
+.panel{background:#fff;border:1px solid var(--line);border-radius:12px;padding:22px;min-width:0}
+.panel h2{font-size:20px;line-height:26px;margin:0}
+.checklist{display:flex;flex-direction:column;gap:17px}
+.checklist-top{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.muted-small{font-size:12px;color:var(--muted)}
+.progress{height:6px;background:var(--line);border-radius:8px;overflow:hidden;margin:0 0 0}
+.progress-fill{height:100%;width:20%;background:var(--blue);transition:width .2s}
+.task{border:1px solid var(--line);border-radius:8px;min-height:73px;padding:14px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.task-copy{min-width:0;display:flex;flex-direction:column;gap:5px}
+.task-title{font-size:14px;font-weight:700;line-height:21px}
+.task-description{font-size:13px;line-height:20px;color:var(--muted)}
+.task-action{flex:0 0 auto;min-height:42px;border:0;border-radius:8px;padding:0 20px;background:linear-gradient(0deg,rgba(94,129,244,.1),rgba(94,129,244,.1)),#fff;color:var(--blue);font-weight:700}
+.task-action:hover,.secondary:hover{background:#E4EAFF}
+.done-label{color:var(--blue);font-size:18px;white-space:nowrap}
+.right-column{display:flex;flex-direction:column;gap:22px}
+.date-pill{align-self:flex-start}
+.activity-list{display:flex;flex-direction:column;gap:16px;width:100%}
+.activity{width:100%;text-align:left;border:1px solid var(--line);background:#fff;border-radius:8px;padding:14px;display:flex;align-items:flex-start;justify-content:space-between;gap:10px;color:var(--ink)}
+.activity:hover{border-color:#AFC4FF}
+.activity strong{display:block;font-size:13px;line-height:20px;margin-bottom:4px}
+.activity span{display:block;color:var(--muted);font-size:13px;line-height:20px}
+.chevron{color:var(--blue);font-size:20px;line-height:20px}
+.secondary{width:100%;min-height:42px;background:linear-gradient(0deg,rgba(94,129,244,.1),rgba(94,129,244,.1)),#fff;color:var(--blue);border:0;border-radius:8px;font-weight:700}
+.team-description{color:var(--muted);font-size:14px;line-height:21px;margin:0}
+.avatars{display:flex;gap:10px}
+.initial{display:inline-flex;align-items:center;justify-content:center;min-width:34px;height:22px;padding:0 9px;border-radius:14px;background:var(--pale);color:var(--blue);font-size:12px;font-weight:700}
+.footer{padding:0 32px 28px;color:var(--muted);font-size:12px;line-height:18px}
+.toast{position:fixed;right:22px;bottom:22px;background:#1C1D21;color:#fff;padding:13px 16px;border-radius:10px;box-shadow:0 8px 28px #0002;max-width:min(360px,calc(100vw - 40px));display:none;z-index:10}
+.toast.show{display:block}
+@media(min-width:1500px){.sidebar{width:216px;flex-basis:216px}.content{padding:32px}}
+@media(max-width:1100px){.sidebar{width:190px;flex-basis:190px;padding:16px}.content{padding:24px}.topbar{padding:0 24px}.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.columns{grid-template-columns:minmax(0,1.6fr) minmax(260px,1fr)}.panel{padding:18px}}
+@media(max-width:800px){.sidebar{width:68px;flex-basis:68px;padding:16px 9px;align-items:center;gap:24px}.brand{font-size:18px;letter-spacing:-.8px}.workspace-meta,.nav-label,.workspace-card,.support-link{display:none}.nav{width:100%}.nav-item{justify-content:center;padding:0}.main{width:calc(100% - 68px)}.topbar{height:auto;min-height:68px;padding:14px;gap:12px;flex-wrap:wrap}.breadcrumb{font-size:12px}.search{order:3;width:100%}.top-actions{margin-left:auto}.content{padding:20px 16px}.columns{grid-template-columns:1fr}.right-column{display:grid;grid-template-columns:1fr 1fr}.footer{padding:0 16px 20px}}
+@media(max-width:520px){.page-heading{align-items:flex-start}.page-heading h1{font-size:27px;line-height:36px}.page-heading p{max-width:250px}.page-heading .primary{padding:0 13px;font-size:12px}.metrics{grid-template-columns:1fr 1fr;gap:10px}.metric{padding:13px}.metric-value{font-size:24px}.columns{gap:16px}.panel{padding:16px}.checklist{gap:12px}.task{align-items:flex-start;padding:12px;gap:8px}.task-action{padding:0 11px;min-height:38px;font-size:12px}.task-description{font-size:12px}.right-column{display:flex}.footer{font-size:11px}}
+
+/* Shared interaction polish */
+:where(a,button,input,select,textarea,[tabindex]):focus-visible{outline:3px solid #9bb8ff;outline-offset:2px}
+:where(button,[role="button"]):disabled{opacity:.55;cursor:not-allowed}
+:where(input,select,textarea):disabled{opacity:.65;cursor:not-allowed}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+</style>
+  <link rel="stylesheet" href="assets/css/design-system.css">
+</head>
+<body>
+<div class="app">
+  <aside class="itg-sidebar" data-itglow-sidebar aria-label="Application sidebar"></aside>
+
+  <main class="main">
+    <header class="itg-topbar" data-itglow-topbar aria-label="Workspace toolbar"></header>
+<script src="assets/js/app.js"></script>
+
+    <div class="content" id="setup">
+      <section class="page-heading">
+        <div><h1>Setup guide</h1><p>Welcome, Craft UI. Let's make WhiteOnWhite your own.</p></div>
+        <button class="primary" data-action="Invite team">Invite team</button>
+      </section>
+
+      <div class="notice"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5"/><path d="M12 10.5v6M12 7.5h.01"/></svg><span>Review workspace · Legacy contacts and fictional CRM examples are included to help you explore.</span></div>
+
+      <section class="metrics" aria-label="Workspace metrics">
+        <article class="metric"><span class="metric-label">Setup progress</span><strong class="metric-value" id="progressMetric">1 of 5</strong><span class="metric-note">Company details complete</span></article>
+        <article class="metric"><span class="metric-label">Legacy people</span><strong class="metric-value">3</strong><span class="metric-note">Needs data verification</span></article>
+        <article class="metric"><span class="metric-label">Open pipeline</span><strong class="metric-value">$26,000</strong><span class="metric-note">3 illustrative opportunities</span></article>
+        <article class="metric"><span class="metric-label">Activities due</span><strong class="metric-value">4</strong><span class="metric-note">1 overdue · 3 upcoming</span></article>
+      </section>
+
+      <div class="columns">
+        <section class="panel checklist" aria-labelledby="checklist-title">
+          <h2 id="checklist-title">Your workspace checklist</h2>
+          <div class="checklist-top"><span class="pill" id="progressPill">20% complete</span><span class="muted-small">A few steps to a clearer sales day.</span></div>
+          <div class="progress" role="progressbar" aria-label="Setup completion" aria-valuemin="0" aria-valuemax="100" aria-valuenow="20" id="progressBar"><div class="progress-fill" id="progressFill"></div></div>
+
+          <article class="task" data-task="company">
+            <div class="task-copy"><div class="task-title">✓ Company details added</div><div class="task-description">WhiteOnWhite · 1–10 Employees</div></div><span class="done-label">Done</span>
+          </article>
+          <article class="task" data-task="contacts">
+            <div class="task-copy"><div class="task-title">Import your contacts</div><div class="task-description">Bring your relationships in with a CSV file.</div></div><button class="task-action" data-action="Import contacts">Import contacts</button>
+          </article>
+          <article class="task" data-task="deal">
+            <div class="task-copy"><div class="task-title">Create your first deal</div><div class="task-description">Track a new opportunity through your pipeline.</div></div><button class="task-action" data-action="Add deal">Add deal</button>
+          </article>
+          <article class="task" data-task="activity">
+            <div class="task-copy"><div class="task-title">Schedule an activity</div><div class="task-description">Plan a call, meeting or follow-up.</div></div><button class="task-action" data-action="Schedule activity">Schedule activity</button>
+          </article>
+          <article class="task" data-task="team">
+            <div class="task-copy"><div class="task-title">Invite your team</div><div class="task-description">Share context with the people you work with.</div></div><button class="task-action" data-action="Invite members">Invite members</button>
+          </article>
+        </section>
+
+        <div class="right-column">
+          <section class="panel checklist" id="activities" aria-labelledby="today-title">
+            <h2 id="today-title">Next up today</h2>
+            <span class="pill date-pill">Monday, 12 October 2026</span>
+            <div class="activity-list">
+              <button class="activity" data-action="Send Northstar proposal"><div><strong>Send Northstar proposal</strong><span>$8,000 · Maya Chen · Due today</span></div><span class="chevron">›</span></button>
+              <button class="activity" data-action="Review Cedar terms"><div><strong>Review Cedar terms</strong><span>$6,000 · Craft UI · 14 Oct</span></div><span class="chevron">›</span></button>
+            </div>
+            <button class="secondary" data-action="View activities">View activities</button>
+          </section>
+
+          <section class="panel checklist" aria-labelledby="team-title">
+            <h2 id="team-title">Bring your team together</h2>
+            <p class="team-description">Craft UI, Maya Chen and Alex Morgan keep every handoff in context.</p>
+            <div class="avatars"><span class="initial">CU</span><span class="initial">MC</span><span class="initial">AM</span></div>
+            <p class="muted-small">No additional invitations pending.</p>
+            <button class="secondary" data-action="Manage team">Manage team</button>
+          </section>
+        </div>
+      </div>
+      <footer class="footer" style="padding:0">ITGlow Technology · WhiteOnWhite workspace · Static review</footer>
+    </div>
+  </main>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+function notify(message){
+  window.ITGlowUI.toast(message);
+}
+document.querySelectorAll('[data-action]').forEach(button=>{
+  button.addEventListener('click',()=>{
+    const action=button.dataset.action;
+    const task=button.closest('[data-task]');
+    if(task && task.dataset.task!=='company'){
+      if(!task.dataset.completed){
+        task.dataset.completed='true';
+        const label=task.querySelector('.task-title');
+        label.textContent='✓ '+label.textContent;
+        const actionButton=task.querySelector('button');
+        if(actionButton){actionButton.textContent='Completed';actionButton.disabled=true;actionButton.style.opacity='.7';}
+        updateProgress();
+      }
+    }
+    notify(action+' selected. Connect this action to your CRM backend to complete it.');
+  });
+});
+function updateProgress(){
+  const completed=1+document.querySelectorAll('.task[data-completed="true"]').length;
+  const percent=Math.round(completed/5*100);
+  document.getElementById('progressMetric').textContent=completed+' of 5';
+  document.getElementById('progressPill').textContent=percent+'% complete';
+  document.getElementById('progressFill').style.width=percent+'%';
+  const bar=document.getElementById('progressBar');
+  bar.setAttribute('aria-valuenow',percent);
+}
+document.getElementById('workspaceSearch').addEventListener('input',event=>{
+  const q=event.target.value.trim().toLowerCase();
+  let matches=0;
+  document.querySelectorAll('.task,.activity,.metric').forEach(item=>{
+    const match=!q || item.textContent.toLowerCase().includes(q);
+    item.style.display=match?'':'none';
+    if(match && q) matches++;
+  });
+  if(q) notify(matches ? matches+' matching item(s) found.' : 'No matching workspace items.');
+});
+document.getElementById('notificationsButton').addEventListener('click',()=>notify('You’re all caught up on notifications.'));
+document.getElementById('profileButton').addEventListener('click',()=>notify('Profile menu · Connect your account settings here.'));
+</script>
+</body>
+</html>

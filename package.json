@@ -1,0 +1,17 @@
+{
+  "name": "itglow-crm-prototype",
+  "version": "1.2.0",
+  "private": true,
+  "description": "ITGlow CRM static prototype with a strict TypeScript shared UI layer.",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "verify": "node scripts/verify-project.mjs",
+    "start:api": "python backend/app.py",
+    "test:api": "python -m unittest backend.test_api",
+    "test": "npm run typecheck && npm run verify && npm run test:api"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.3"
+  }
+}

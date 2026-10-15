@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Complete | ITGlow</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;800&display=swap"
+          rel="stylesheet">
+
+    <style>
+        /* =========================
+           GLOBAL
+        ========================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0D59FC;
+            --blue: #5E81F4;
+            --dark-blue: #1B51E5;
+            --heading: #1C1D21;
+            --text: #8181A5;
+            --muted: #68748A;
+            --border: #ECECF2;
+            --white: #FFFFFF;
+            --footer-bg: #F6F8FC;
+            --hint-bg: #EAF6EF;
+            --success: #23795A;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            color: var(--heading);
+            background: var(--white);
+            min-height: 100vh;
+        }
+
+        button, input {
+            font: inherit;
+        }
+
+        button, a {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        /* =========================
+           PAGE
+        ========================= */
+
+        .auth-page {
+            width: 100%;
+            min-height: 960px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        .auth-header {
+            height: 70px;
+            flex-shrink: 0;
+            padding: 20px 44px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--white);
+        }
+
+        .brand {
+            font-size: 24px;
+            line-height: 29px;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .support-link {
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 16px;
+        }
+
+        .support-link:hover {
+            color: var(--primary);
+        }
+
+        /* =========================
+           MAIN SECTION
+        ========================= */
+
+        .auth-main {
+            flex: 1;
+            min-height: 700px;
+            display: flex;
+            position: relative;
+            overflow: hidden;
+            background: var(--blue);
+        }
+
+        /* =========================
+           LEFT CONTENT PANEL
+        ========================= */
+
+        .auth-content-panel {
+            width: 53.4%;
+            min-height: 100%;
+            padding: 70px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--white);
+            border-radius: 0 16px 16px 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .auth-content {
+            width: 100%;
+            max-width: 417px;
+            display: flex;
+            flex-direction: column;
+            gap: 72px;
+        }
+
+        /* =========================
+           HEADING
+        ========================= */
+
+        .content-heading {
+            display: flex;
+            flex-direction: column;
+            gap: 11px;
+        }
+
+        .content-heading h1 {
+            font-size: 32px;
+            line-height: 1.3;
+            font-weight: 700;
+            letter-spacing: -0.4px;
+            color: var(--heading);
+        }
+
+        .content-heading p {
+            font-size: 14px;
+            line-height: 21px;
+            color: var(--text);
+        }
+
+        .content-heading .step-description {
+            margin-top: 0;
+        }
+
+        /* =========================
+           NEWSLETTER EMAIL
+        ========================= */
+
+        .completion-form {
+            display: flex;
+            flex-direction: column;
+            gap: 34px;
+            width: 100%;
+        }
+
+        .form-field {
+            height: 72px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .form-field label {
+            font-size: 14px;
+            line-height: 21px;
+            font-weight: 400;
+            color: var(--text);
+            margin-bottom: 2px;
+        }
+
+        .field-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+        }
+
+        .form-field input {
+            flex: 1;
+            min-width: 0;
+            height: 25px;
+            padding: 0;
+            border: none;
+            outline: none;
+            background: transparent;
+            color: var(--text);
+            font-size: 14px;
+            line-height: 21px;
+            font-weight: 700;
+        }
+
+        .form-field input::placeholder {
+            color: var(--text);
+            opacity: 1;
+        }
+
+        .form-field:focus-within {
+            border-bottom-color: var(--primary);
+        }
+
+        .email-suffix {
+            font-size: 18px;
+            font-weight: 400;
+            color: var(--text);
+            padding-right: 5px;
+        }
+
+        /* =========================
+           ENTER WORKSPACE BUTTON
+        ========================= */
+
+        .btn-primary {
+            width: 100%;
+            height: 42px;
+            border: none;
+            border-radius: 8px;
+            background: var(--primary);
+            color: var(--white);
+            font-size: 14px;
+            line-height: 17px;
+            font-weight: 700;
+            transition: background 0.2s ease,
+                        transform 0.2s ease;
+        }
+
+        .btn-primary:hover {
+            background: #0849D8;
+        }
+
+        .btn-primary:active {
+            transform: scale(0.99);
+        }
+
+        /* =========================
+           RIGHT ILLUSTRATION PANEL
+        ========================= */
+
+        .auth-illustration {
+            flex: 1;
+            min-width: 0;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(
+                98.58% 98.58% at 57.43% 48.15%,
+                #5E81F4 0%,
+                #1B51E5 100%
+            );
+        }
+
+        /* Decorative background shapes */
+
+        .illustration-shape {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(27, 81, 229, 0.17);
+            pointer-events: none;
+        }
+
+        .shape-one {
+            width: 440px;
+            height: 440px;
+            top: -120px;
+            right: -170px;
+        }
+
+        .shape-two {
+            width: 430px;
+            height: 430px;
+            bottom: -100px;
+            left: 10%;
+        }
+
+        .shape-three {
+            width: 310px;
+            height: 310px;
+            top: 20%;
+            right: 10%;
+            opacity: 0.65;
+        }
+
+        .illustration-placeholder {
+            width: 100%;
+            max-width: 520px;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Add your registration-complete illustration here.
+
+           Example:
+
+           <img
+               src="assets/registration.png"
+               alt="Registration complete"
+               class="main-illustration"
+           >
+        */
+
+        .main-illustration {
+            display: block;
+            width: 100%;
+            max-width: 480px;
+            height: auto;
+            object-fit: contain;
+        }
+
+        /* =========================
+           SUPPORTING GUIDANCE
+        ========================= */
+
+        .supporting-guidance {
+            min-height: 217px;
+            padding: 22px max(24px, calc((100% - 1104px) / 2));
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            gap: 12px;
+            background: var(--footer-bg);
+        }
+
+        /* Success message */
+
+        .success-message {
+            min-height: 44px;
+            padding: 12px 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--hint-bg);
+            border-radius: 8px;
+        }
+
+        /* Add your circle-check icon asset manually */
+
+        .success-icon {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+        }
+
+        .success-message p {
+            font-size: 13px;
+            line-height: 20px;
+            color: var(--heading);
+        }
+
+        /* Newsletter checkbox */
+
+        .newsletter-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-height: 21px;
+            cursor: pointer;
+        }
+
+        .newsletter-option input {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+            border: 1px solid #E4E9F2;
+            border-radius: 4px;
+            background: var(--white);
+            display: grid;
+            place-content: center;
+            cursor: pointer;
+        }
+
+        .newsletter-option input:checked {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .newsletter-option input:checked::before {
+            content: "";
+            width: 5px;
+            height: 9px;
+            border: solid var(--white);
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+            margin-top: -2px;
+        }
+
+        .newsletter-option span {
+            font-size: 14px;
+            line-height: 21px;
+            color: var(--heading);
+        }
+
+        .newsletter-description {
+            font-size: 13px;
+            line-height: 20px;
+            color: var(--muted);
+        }
+
+        /* =========================
+           NEWSLETTER ACTIONS
+        ========================= */
+
+        .newsletter-actions {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .btn-subscribe {
+            min-width: 95px;
+            height: 40px;
+            padding: 0 20px;
+            border: none;
+            border-radius: 8px;
+            background: rgba(94, 129, 244, 0.1);
+            color: var(--primary);
+            font-size: 14px;
+            font-weight: 700;
+            transition: background 0.2s ease;
+        }
+
+        .btn-subscribe:hover {
+            background: rgba(94, 129, 244, 0.18);
+        }
+
+        .newsletter-status {
+            font-size: 12px;
+            line-height: 18px;
+            color: var(--muted);
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        .auth-footer {
+            min-height: 66px;
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            background: var(--white);
+        }
+
+        .footer-company,
+        .footer-legal {
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 18px;
+        }
+
+        .footer-legal {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            white-space: nowrap;
+        }
+
+        .footer-legal a:hover {
+            color: var(--primary);
+        }
+
+        /* =========================
+           TABLET
+        ========================= */
+
+        @media (max-width: 1000px) {
+            .auth-content-panel {
+                width: 58%;
+                padding: 50px 35px;
+            }
+
+            .auth-content {
+                max-width: 417px;
+                gap: 55px;
+            }
+
+            .content-heading h1 {
+                font-size: 29px;
+            }
+
+            .illustration-placeholder {
+                max-width: 360px;
+            }
+
+            .supporting-guidance {
+                padding: 22px 40px;
+            }
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 700px) {
+            .auth-header {
+                height: 70px;
+                padding: 20px 24px;
+            }
+
+            .brand {
+                font-size: 22px;
+            }
+
+            .auth-main {
+                flex-direction: column;
+                min-height: auto;
+                overflow: visible;
+            }
+
+            .auth-content-panel {
+                width: 100%;
+                min-height: auto;
+                padding: 55px 24px;
+                border-radius: 0;
+            }
+
+            .auth-content {
+                max-width: 440px;
+                gap: 44px;
+            }
+
+            .content-heading h1 {
+                font-size: 29px;
+            }
+
+            .auth-illustration {
+                min-height: 320px;
+                padding: 30px 20px;
+            }
+
+            .illustration-placeholder {
+                min-height: 260px;
+            }
+
+            .supporting-guidance {
+                min-height: auto;
+                padding: 22px 24px;
+            }
+
+            .success-message {
+                align-items: flex-start;
+            }
+
+            .auth-footer {
+                padding: 22px 24px;
+            }
+        }
+
+        /* =========================
+           SMALL MOBILE
+        ========================= */
+
+        @media (max-width: 380px) {
+            .auth-header {
+                padding: 18px;
+            }
+
+            .auth-content-panel {
+                padding: 40px 20px;
+            }
+
+            .content-heading h1 {
+                font-size: 27px;
+            }
+
+            .auth-footer {
+                padding: 20px;
+                flex-wrap: wrap;
+            }
+        }
+    
+/* Shared interaction polish */
+:where(a,button,input,select,textarea,[tabindex]):focus-visible{outline:3px solid #9bb8ff;outline-offset:2px}
+:where(button,[role="button"]):disabled{opacity:.55;cursor:not-allowed}
+:where(input,select,textarea):disabled{opacity:.65;cursor:not-allowed}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+</style>
+  <link rel="stylesheet" href="assets/css/design-system.css">
+  <script src="assets/js/app.js"></script>
+</head>
+
+<body>
+
+    <div class="auth-page">
+
+        <!-- HEADER -->
+
+        <header class="auth-header">
+
+            <a href="#" class="brand">ITGlow</a>
+
+            <a href="#" class="support-link">
+                Need help? ↗
+            </a>
+
+        </header>
+
+
+        <!-- MAIN CONTENT -->
+
+        <main class="auth-main">
+
+            <!-- LEFT: REGISTRATION SUCCESS -->
+
+            <section class="auth-content-panel">
+
+                <div class="auth-content">
+
+                    <!-- HEADING -->
+
+                    <div class="content-heading">
+
+                        <h1>
+                            You’re all set.<br>
+                            Welcome to ITGlow.
+                        </h1>
+
+                        <p class="step-description">
+                            Step 3 of 3 · Registration complete.<br>
+                            Start setting up your contacts, deals and team.
+                        </p>
+
+                    </div>
+
+
+                    <!-- OPTIONAL NEWSLETTER EMAIL -->
+
+                    <form class="completion-form" id="completionForm">
+
+                        <div class="form-field">
+
+                            <label for="newsletterEmail">
+                                Newsletter email (optional)
+                            </label>
+
+                            <div class="field-control">
+
+                                <input
+                                    type="email"
+                                    id="newsletterEmail"
+                                    name="newsletterEmail"
+                                    placeholder="Enter your email"
+                                    value="support@craftui.com"
+                                    autocomplete="email"
+                                >
+
+                                <span class="email-suffix">@</span>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- ENTER WORKSPACE -->
+
+                        <button
+                            type="submit"
+                            class="btn-primary"
+                        >
+                            Enter workspace
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </section>
+
+
+            <!-- RIGHT: ILLUSTRATION -->
+
+            <section
+                class="auth-illustration"
+                aria-label="Registration complete illustration"
+            >
+
+                <!-- Background decorations -->
+
+                <div class="illustration-shape shape-one"></div>
+                <div class="illustration-shape shape-two"></div>
+                <div class="illustration-shape shape-three"></div>
+
+                <div class="illustration-placeholder">
+
+                    <!-- Add your illustration asset manually.
+
+                         Example:
+
+                         <img
+                             src="assets/registration.png"
+                             alt="Registration complete"
+                             class="main-illustration"
+                         >
+                    -->
+
+                </div>
+
+            </section>
+
+        </main>
+
+
+        <!-- SUPPORTING GUIDANCE AND NEWSLETTER -->
+
+        <section class="supporting-guidance">
+
+            <!-- SUCCESS MESSAGE -->
+
+            <div class="success-message">
+
+                <!-- Add your green circle-check icon asset here -->
+
+                <span class="success-icon">
+                    <!-- Success icon placeholder -->
+                </span>
+
+                <p>
+                    Registration complete · WhiteOnWhite is ready.
+                    Your account and company details have been saved.
+                </p>
+
+            </div>
+
+
+            <!-- NEWSLETTER OPT-IN -->
+
+            <label class="newsletter-option">
+
+                <input
+                    type="checkbox"
+                    id="newsletterConsent"
+                    name="newsletterConsent"
+                >
+
+                <span>
+                    Subscribe to the ITGlow email newsletter (optional)
+                </span>
+
+            </label>
+
+
+            <!-- NEWSLETTER DESCRIPTION -->
+
+            <p class="newsletter-description">
+                Product tips, CRM guides and occasional updates.
+                No subscription is required to enter your workspace.
+                Unsubscribe at any time.
+            </p>
+
+
+            <!-- SUBSCRIBE ACTION -->
+
+            <div class="newsletter-actions">
+
+                <button
+                    type="button"
+                    class="btn-subscribe"
+                    id="subscribeButton"
+                >
+                    Subscribe
+                </button>
+
+                <p
+                    class="newsletter-status"
+                    id="newsletterStatus"
+                    aria-live="polite"
+                >
+                    Newsletter preference: not subscribed
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- FOOTER -->
+
+        <footer class="auth-footer">
+
+            <p class="footer-company">
+                ITGlow Technology
+            </p>
+
+            <nav class="footer-legal" aria-label="Legal links">
+
+                <a href="legal-documents.html">Privacy</a>
+
+                <span>·</span>
+
+                <a href="legal-documents.html">Terms</a>
+
+            </nav>
+
+        </footer>
+
+    </div>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+        const completionForm =
+            document.getElementById("completionForm");
+
+        const newsletterEmail =
+            document.getElementById("newsletterEmail");
+
+        const newsletterConsent =
+            document.getElementById("newsletterConsent");
+
+        const subscribeButton =
+            document.getElementById("subscribeButton");
+
+        const newsletterStatus =
+            document.getElementById("newsletterStatus");
+
+
+        // Enter the CRM workspace
+
+        completionForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const email = newsletterEmail.value.trim();
+
+            // TODO:
+            // Call your backend to save the optional newsletter email.
+            // Then redirect to the authenticated CRM workspace.
+            //
+            // Example destination:
+            // window.location.href = "dashboard.html";
+
+            console.log("Continue to the ITGlow workspace.", {
+                newsletterEmail: email || null,
+                newsletterConsent: newsletterConsent.checked
+            });
+        });
+
+
+        // Newsletter preference
+
+        subscribeButton.addEventListener("click", function () {
+            const email = newsletterEmail.value.trim();
+
+            if (!newsletterConsent.checked) {
+                newsletterStatus.textContent =
+                    "Please tick the newsletter checkbox first.";
+
+                return;
+            }
+
+            if (!email) {
+                newsletterEmail.setCustomValidity(
+                    "Enter an email address to subscribe."
+                );
+
+                newsletterEmail.reportValidity();
+                newsletterEmail.setCustomValidity("");
+                newsletterEmail.focus();
+
+                return;
+            }
+
+            // TODO:
+            // Submit the consent and email to your backend.
+            // Only show success after the server confirms subscription.
+
+            newsletterStatus.textContent =
+                "Subscription requires backend confirmation.";
+
+            console.log("Newsletter subscription requested.", {
+                email: email,
+                consent: newsletterConsent.checked
+            });
+        });
+
+
+        // Keep the status text synchronized with the checkbox
+
+        newsletterConsent.addEventListener("change", function () {
+            newsletterStatus.textContent = newsletterConsent.checked
+                ? "Newsletter preference: selected"
+                : "Newsletter preference: not subscribed";
+        });
+    </script>
+
+</body>
+</html>

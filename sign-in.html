@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In | ITGlow</title>
+
+    <!-- Google Font: Lato -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;800&display=swap"
+          rel="stylesheet">
+
+    <style>
+        /* =========================
+           RESET & GLOBAL STYLES
+        ========================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0D59FC;
+            --blue: #5E81F4;
+            --heading: #1C1D21;
+            --text: #8181A5;
+            --muted: #68748A;
+            --border: #ECECF2;
+            --background: #FFFFFF;
+            --footer-bg: #F6F8FC;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            color: var(--heading);
+            background: var(--background);
+            min-height: 100vh;
+        }
+
+        button,
+        input {
+            font: inherit;
+        }
+
+        button,
+        a {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        /* =========================
+           MAIN PAGE
+        ========================= */
+
+        .auth-page {
+            width: 100%;
+            min-height: 960px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        .auth-header {
+            height: 77px;
+            padding: 24px 48px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-shrink: 0;
+        }
+
+        .brand {
+            font-size: 24px;
+            line-height: 29px;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .support-link {
+            font-size: 13px;
+            line-height: 16px;
+            color: var(--muted);
+            transition: color 0.2s ease;
+        }
+
+        .support-link:hover {
+            color: var(--primary);
+        }
+
+        /* =========================
+           AUTHENTICATION SECTION
+        ========================= */
+
+        .auth-main {
+            display: flex;
+            flex: 1;
+            min-height: 700px;
+            position: relative;
+            overflow: hidden;
+            background: var(--blue);
+        }
+
+        /* =========================
+           LEFT: SIGN IN FORM
+        ========================= */
+
+        .auth-form-panel {
+            width: 54.45%;
+            min-height: 100%;
+            padding: 70px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--background);
+            border-radius: 0 16px 16px 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .auth-form-container {
+            width: 100%;
+            max-width: 404px;
+            display: flex;
+            flex-direction: column;
+            gap: 72px;
+        }
+
+        /* Heading */
+
+        .form-heading {
+            display: flex;
+            flex-direction: column;
+            gap: 11px;
+        }
+
+        .form-heading h1 {
+            font-size: 32px;
+            line-height: 1.3;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: var(--heading);
+        }
+
+        .form-heading p {
+            font-size: 14px;
+            line-height: 21px;
+            font-weight: 400;
+            color: var(--text);
+        }
+
+        /* =========================
+           FORM FIELDS
+        ========================= */
+
+        .signin-form {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 34px;
+        }
+
+        .form-fields {
+            display: flex;
+            flex-direction: column;
+            gap: 13px;
+        }
+
+        .form-field {
+            width: 100%;
+            height: 70px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .form-field label {
+            font-size: 14px;
+            line-height: 21px;
+            font-weight: 400;
+            color: var(--text);
+            margin-bottom: 2px;
+        }
+
+        .field-control {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            gap: 10px;
+        }
+
+        .form-field input {
+            width: 100%;
+            min-width: 0;
+            height: 25px;
+            border: none;
+            outline: none;
+            background: transparent;
+            color: var(--heading);
+            font-size: 14px;
+            line-height: 21px;
+            font-weight: 700;
+        }
+
+        .form-field input::placeholder {
+            color: var(--text);
+            opacity: 1;
+            font-weight: 700;
+        }
+
+        .form-field:focus-within {
+            border-bottom-color: var(--primary);
+        }
+
+        /* EMAIL FIELD */
+
+        .email-suffix {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--heading);
+            padding-right: 5px;
+        }
+
+        /* PASSWORD FIELD */
+
+        .password-toggle {
+            border: none;
+            background: transparent;
+            color: var(--text);
+            font-size: 12px;
+            line-height: 16px;
+            padding: 4px 0 4px 8px;
+            flex-shrink: 0;
+        }
+
+        .password-toggle:hover {
+            color: var(--primary);
+        }
+
+        /* =========================
+           REMEMBER ME & RECOVERY
+        ========================= */
+
+        .form-options {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            min-height: 20px;
+        }
+
+        .remember-option {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            font-size: 13px;
+            line-height: 21px;
+            font-weight: 700;
+            color: var(--heading);
+        }
+
+        .remember-option input {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--border);
+            border-radius: 50%;
+            background: var(--background);
+            display: grid;
+            place-content: center;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .remember-option input:checked {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .remember-option input:checked::before {
+            content: "";
+            width: 8px;
+            height: 8px;
+            background: #FFFFFF;
+            border-radius: 50%;
+        }
+
+        .recover-link {
+            font-size: 13px;
+            line-height: 16px;
+            font-weight: 700;
+            color: var(--blue);
+            white-space: nowrap;
+        }
+
+        .recover-link:hover {
+            color: var(--primary);
+            text-decoration: underline;
+        }
+
+        /* =========================
+           PRIMARY BUTTONS
+        ========================= */
+
+        .form-buttons {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+        }
+
+        .btn {
+            flex: 1;
+            min-width: 0;
+            height: 46px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            line-height: 17px;
+            font-weight: 700;
+            transition:
+                background 0.2s ease,
+                transform 0.2s ease;
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: #FFFFFF;
+        }
+
+        .btn-primary:hover {
+            background: #0849D8;
+        }
+
+        .btn-secondary {
+            background: rgba(94, 129, 244, 0.1);
+            color: var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(94, 129, 244, 0.18);
+        }
+
+        /* =========================
+           SOCIAL SIGN IN
+        ========================= */
+
+        .social-login {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 13px;
+        }
+
+        .social-login p {
+            font-size: 14px;
+            line-height: 21px;
+            color: var(--text);
+        }
+
+        .social-buttons {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .social-button {
+            width: 46px;
+            height: 46px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #FFFFFF;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text);
+            transition:
+                border-color 0.2s ease,
+                background 0.2s ease;
+        }
+
+        .social-button:hover {
+            border-color: var(--primary);
+            background: #F8FAFF;
+        }
+
+        /* Add your social media images/icons manually:
+           Twitter, Google and Facebook.
+           Example asset paths:
+           assets/twitter.svg
+           assets/google.svg
+           assets/facebook.svg
+        */
+
+        .social-icon-placeholder {
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+        /* =========================
+           RIGHT: ILLUSTRATION PANEL
+        ========================= */
+
+        .auth-illustration {
+            flex: 1;
+            min-width: 0;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background:
+                radial-gradient(
+                    98.58% 98.58% at 57.43% 48.15%,
+                    #5E81F4 0%,
+                    #1B51E5 100%
+                );
+        }
+
+        /* Decorative background shapes */
+
+        .illustration-shape {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(27, 81, 229, 0.17);
+            pointer-events: none;
+        }
+
+        .shape-one {
+            width: 430px;
+            height: 430px;
+            top: -100px;
+            right: -160px;
+        }
+
+        .shape-two {
+            width: 440px;
+            height: 440px;
+            bottom: -120px;
+            left: 10%;
+        }
+
+        .shape-three {
+            width: 300px;
+            height: 300px;
+            top: 20%;
+            right: 10%;
+            opacity: 0.6;
+        }
+
+        /* Add your main illustration asset manually.
+           Example:
+           <img src="assets/sing_in.png"
+                alt="People managing contacts"
+                class="main-illustration">
+        */
+
+        .illustration-placeholder {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 480px;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* =========================
+           SUPPORTING GUIDANCE
+        ========================= */
+
+        .supporting-guidance {
+            min-height: 68px;
+            padding: 24px max(24px, calc((100% - 1080px) / 2));
+            display: flex;
+            align-items: center;
+            background: var(--footer-bg);
+        }
+
+        .supporting-guidance p {
+            font-size: 13px;
+            line-height: 20px;
+            font-weight: 400;
+            color: var(--muted);
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        .auth-footer {
+            min-height: 66px;
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            background: #FFFFFF;
+        }
+
+        .footer-company,
+        .footer-legal {
+            font-size: 12px;
+            line-height: 18px;
+            color: var(--muted);
+        }
+
+        .footer-legal {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            white-space: nowrap;
+        }
+
+        .footer-legal a:hover {
+            color: var(--primary);
+        }
+
+        /* =========================
+           TABLET RESPONSIVE
+        ========================= */
+
+        @media (max-width: 1000px) {
+            .auth-page {
+                min-height: 100vh;
+            }
+
+            .auth-main {
+                min-height: 700px;
+            }
+
+            .auth-form-panel {
+                width: 58%;
+                padding: 50px 35px;
+            }
+
+            .auth-form-container {
+                max-width: 404px;
+                gap: 55px;
+            }
+
+            .form-heading h1 {
+                font-size: 29px;
+            }
+
+            .illustration-placeholder {
+                max-width: 340px;
+            }
+
+            .supporting-guidance {
+                padding: 24px 40px;
+            }
+        }
+
+        /* =========================
+           MOBILE RESPONSIVE
+        ========================= */
+
+        @media (max-width: 700px) {
+            .auth-page {
+                min-height: 100vh;
+            }
+
+            .auth-header {
+                height: 70px;
+                padding: 20px 24px;
+            }
+
+            .brand {
+                font-size: 22px;
+            }
+
+            .auth-main {
+                flex-direction: column;
+                min-height: auto;
+                overflow: visible;
+            }
+
+            .auth-form-panel {
+                width: 100%;
+                min-height: auto;
+                padding: 55px 24px 50px;
+                border-radius: 0;
+            }
+
+            .auth-form-container {
+                max-width: 440px;
+                gap: 48px;
+            }
+
+            .form-heading h1 {
+                font-size: 30px;
+                line-height: 1.35;
+            }
+
+            .signin-form {
+                gap: 30px;
+            }
+
+            .form-options {
+                gap: 8px;
+            }
+
+            .remember-option {
+                gap: 8px;
+            }
+
+            .form-buttons {
+                gap: 10px;
+            }
+
+            .auth-illustration {
+                min-height: 320px;
+                padding: 30px 20px;
+            }
+
+            .illustration-placeholder {
+                min-height: 260px;
+            }
+
+            .supporting-guidance {
+                min-height: auto;
+                padding: 22px 24px;
+            }
+
+            .auth-footer {
+                padding: 22px 24px;
+            }
+        }
+
+        /* =========================
+           SMALL MOBILE
+        ========================= */
+
+        @media (max-width: 380px) {
+            .auth-header {
+                padding: 18px;
+            }
+
+            .auth-form-panel {
+                padding: 40px 20px;
+            }
+
+            .form-heading h1 {
+                font-size: 27px;
+            }
+
+            .form-heading p {
+                font-size: 13px;
+            }
+
+            .form-options {
+                flex-wrap: wrap;
+            }
+
+            .btn {
+                font-size: 13px;
+            }
+
+            .auth-footer {
+                padding: 20px;
+                flex-wrap: wrap;
+            }
+        }
+    
+/* Shared interaction polish */
+:where(a,button,input,select,textarea,[tabindex]):focus-visible{outline:3px solid #9bb8ff;outline-offset:2px}
+:where(button,[role="button"]):disabled{opacity:.55;cursor:not-allowed}
+:where(input,select,textarea):disabled{opacity:.65;cursor:not-allowed}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+</style>
+  <link rel="stylesheet" href="assets/css/design-system.css">
+  <script src="assets/js/app.js"></script>
+</head>
+
+<body>
+
+    <div class="auth-page">
+
+        <!-- =========================
+             HEADER
+        ========================== -->
+
+        <header class="auth-header">
+
+            <a href="#" class="brand">ITGlow</a>
+
+            <a href="#" class="support-link">
+                Need help? ↗
+            </a>
+
+        </header>
+
+
+        <!-- =========================
+             MAIN AUTHENTICATION
+        ========================== -->
+
+        <main class="auth-main">
+
+            <!-- LEFT SIDE: SIGN IN FORM -->
+
+            <section class="auth-form-panel">
+
+                <div class="auth-form-container">
+
+                    <!-- HEADING -->
+
+                    <div class="form-heading">
+
+                        <h1>
+                            Welcome back.<br>
+                            Sign in to ITGlow.
+                        </h1>
+
+                        <p>
+                            Enter your details to see your latest updates.
+                        </p>
+
+                    </div>
+
+
+                    <!-- SIGN IN FORM -->
+
+                    <form class="signin-form" id="signinForm">
+
+                        <div class="form-fields">
+
+                            <!-- EMAIL FIELD -->
+
+                            <div class="form-field">
+
+                                <label for="email">Email</label>
+
+                                <div class="field-control">
+
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        name="email"
+                                        placeholder="john.doe@gmail.com"
+                                        autocomplete="email"
+                                        required
+                                    >
+
+                                    <!-- Optional email suffix decoration -->
+                                    <span class="email-suffix">@</span>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- PASSWORD FIELD -->
+
+                            <div class="form-field">
+
+                                <label for="password">Password</label>
+
+                                <div class="field-control">
+
+                                    <input
+                                        type="password"
+                                        id="password"
+                                        name="password"
+                                        placeholder="Enter your password"
+                                        autocomplete="current-password"
+                                        required
+                                    >
+
+                                    <button
+                                        type="button"
+                                        class="password-toggle"
+                                        id="togglePassword"
+                                        aria-label="Show password"
+                                    >
+                                        Show
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- REMEMBER ME / FORGOT PASSWORD -->
+
+                        <div class="form-options">
+
+                            <label class="remember-option">
+
+                                <input
+                                    type="checkbox"
+                                    name="remember"
+                                    checked
+                                >
+
+                                <span>Remember me</span>
+
+                            </label>
+
+                            <a href="itglow-recover-password.html" class="recover-link">
+                                Recover password
+                            </a>
+
+                        </div>
+
+
+                        <!-- SIGN IN / SIGN UP BUTTONS -->
+
+                        <div class="form-buttons">
+
+                            <button
+                                type="submit"
+                                class="btn btn-primary"
+                            >
+                                Sign In
+                            </button>
+
+                            <button
+                                type="button"
+                                class="btn btn-secondary"
+                                id="signUpButton"
+                            >
+                                Sign Up
+                            </button>
+
+                        </div>
+
+                    </form>
+
+
+                    <!-- SOCIAL LOGIN -->
+
+                    <div class="social-login">
+
+                        <p>Or sign in with</p>
+
+                        <div class="social-buttons">
+
+                            <!-- Add your Twitter icon/image here manually -->
+                            <button
+                                type="button"
+                                class="social-button"
+                                aria-label="Sign in with Twitter"
+                            >
+                                <!-- Twitter asset placeholder -->
+                            </button>
+
+                            <!-- Add your Google icon/image here manually -->
+                            <button
+                                type="button"
+                                class="social-button"
+                                aria-label="Sign in with Google"
+                            >
+                                <!-- Google asset placeholder -->
+                            </button>
+
+                            <!-- Add your Facebook icon/image here manually -->
+                            <button
+                                type="button"
+                                class="social-button"
+                                aria-label="Sign in with Facebook"
+                            >
+                                <!-- Facebook asset placeholder -->
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- RIGHT SIDE: ILLUSTRATION -->
+
+            <section
+                class="auth-illustration"
+                aria-label="ITGlow illustration"
+            >
+
+                <!-- Decorative background shapes -->
+
+                <div class="illustration-shape shape-one"></div>
+                <div class="illustration-shape shape-two"></div>
+                <div class="illustration-shape shape-three"></div>
+
+                <div class="illustration-placeholder">
+
+                    <!-- Add your main illustration image here manually.
+                         Example:
+                         <img
+                             src="assets/sing_in.png"
+                             alt="ITGlow sign-in illustration"
+                             class="main-illustration"
+                         >
+                    -->
+
+                </div>
+
+            </section>
+
+        </main>
+
+
+        <!-- =========================
+             SUPPORTING GUIDANCE
+        ========================== -->
+
+        <section class="supporting-guidance">
+
+            <p>
+                Welcome back to ITGlow. Your contacts, conversations
+                and next steps in one place.
+            </p>
+
+        </section>
+
+
+        <!-- =========================
+             FOOTER
+        ========================== -->
+
+        <footer class="auth-footer">
+
+            <p class="footer-company">
+                ITGlow Technology
+            </p>
+
+            <nav class="footer-legal" aria-label="Legal links">
+
+                <a href="#">Privacy</a>
+
+                <span>·</span>
+
+                <a href="#">Terms</a>
+
+            </nav>
+
+        </footer>
+
+    </div>
+
+
+    <!-- =========================
+         BASIC JAVASCRIPT
+    ========================== -->
+
+    <script>
+        // Toggle password visibility
+
+        const passwordInput = document.getElementById("password");
+        const togglePassword = document.getElementById("togglePassword");
+
+        togglePassword.addEventListener("click", function () {
+            const isPassword = passwordInput.type === "password";
+
+            passwordInput.type = isPassword ? "text" : "password";
+            togglePassword.textContent = isPassword ? "Hide" : "Show";
+
+            togglePassword.setAttribute(
+                "aria-label",
+                isPassword ? "Hide password" : "Show password"
+            );
+        });
+
+
+        const signinForm = document.getElementById("signinForm");
+        const signinButton = signinForm.querySelector('[type="submit"]');
+        const signinMessage = document.createElement("p");
+        signinMessage.setAttribute("role", "alert");
+        signinMessage.setAttribute("aria-live", "polite");
+        signinForm.prepend(signinMessage);
+        signinForm.addEventListener("submit", async function (event) {
+            event.preventDefault();
+            signinMessage.textContent = "";
+            window.ITGlowUI.setBusy(signinButton, true, "Signing in…");
+            try {
+                await window.ITGlowAPI.login({ email: document.getElementById("email").value.trim(), password: passwordInput.value });
+                window.location.assign("itglow-crm-setup-guide.html");
+            } catch (error) {
+                signinMessage.textContent = error instanceof Error ? error.message : "Unable to sign in.";
+                window.ITGlowUI.setBusy(signinButton, false);
+            }
+        });
+
+
+        // Sign up navigation
+
+        document.getElementById("signUpButton").addEventListener(
+            "click",
+            function () {
+                window.location.href = "sign_up.html";
+            }
+        );
+    </script>
+
+</body>
+</html>
